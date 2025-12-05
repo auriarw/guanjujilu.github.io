@@ -807,6 +807,33 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:44:02.243Z"
+    },
+    {
+      "id": 1764964112007,
+      "showName": "致爱",
+      "showType": "音乐剧",
+      "date": "2025-02-22",
+      "time": "19:30",
+      "cast": [
+        "王洁璐",
+        "张博俊"
+      ],
+      "castWithRoles": [
+        {
+          "key": "艾丽莎|||王洁璐",
+          "roleName": "艾丽莎",
+          "castName": "王洁璐"
+        },
+        {
+          "key": "付平安|||张博俊",
+          "roleName": "付平安",
+          "castName": "张博俊"
+        }
+      ],
+      "seat": "5-12",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:48:32.007Z"
     }
   ],
   "showsInfo": [
@@ -1243,5 +1270,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:47:59.789Z"
+  "lastUpdate": "2025-12-05T19:48:32.479Z"
 }
