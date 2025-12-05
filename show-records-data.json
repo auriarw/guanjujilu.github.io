@@ -661,6 +661,51 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:32:00.829Z"
+    },
+    {
+      "id": 1764963292311,
+      "showName": "她对此感到厌烦",
+      "showType": "音乐剧",
+      "date": "2025-01-18",
+      "time": "14:30",
+      "cast": [
+        "杜钇樵",
+        "杨依泠",
+        "胥子含",
+        "韩冰儿",
+        "王珏语涵"
+      ],
+      "castWithRoles": [
+        {
+          "key": "莉莉丝|||杜钇樵",
+          "roleName": "莉莉丝",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "辛西娅|||杨依泠",
+          "roleName": "辛西娅",
+          "castName": "杨依泠"
+        },
+        {
+          "key": "多琳|||胥子含",
+          "roleName": "多琳",
+          "castName": "胥子含"
+        },
+        {
+          "key": "罗纳德|||韩冰儿",
+          "roleName": "罗纳德",
+          "castName": "韩冰儿"
+        },
+        {
+          "key": "国王|||王珏语涵",
+          "roleName": "国王",
+          "castName": "王珏语涵"
+        }
+      ],
+      "seat": "贵族1-5",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:34:52.311Z"
     }
   ],
   "showsInfo": [
@@ -1084,5 +1129,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:32:01.250Z"
+  "lastUpdate": "2025-12-05T19:34:53.145Z"
 }
