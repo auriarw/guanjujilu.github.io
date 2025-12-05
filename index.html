@@ -2982,7 +2982,8 @@
                     // 解码Base64内容
                     let content;
                     try {
-                        content = decodeURIComponent(escape(atob(data.content)));
+                        const base64Content = data.content.replace(/\n/g, '');
+                        content = decodeURIComponent(escape(atob(base64Content)));
                     } catch (e) {
                         console.error('Base64解码失败:', e);
                         throw new Error('数据解码失败，文件可能损坏');
