@@ -1,0 +1,3459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐剧观演记录</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B2635;
+            --primary-light: #A63446;
+            --secondary: #FF9F66;
+            --bg-main: #FFF9F0;
+            --bg-card: #FFFFFF;
+            --text-primary: #2C1810;
+            --text-secondary: #6B5444;
+            --border: #E8DDD0;
+            --shadow: rgba(139, 38, 53, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #FFF9F0 0%, #F5EDE0 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 28px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: #C5A028;
+        }
+
+        .btn-small {
+            padding: 6px 16px;
+            font-size: 0.9em;
+        }
+
+        .records-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .record-item {
+            background: var(--bg-main);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .record-item:hover {
+            box-shadow: 0 4px 15px var(--shadow);
+            transform: translateX(5px);
+        }
+
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .record-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .record-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--secondary);
+            color: var(--text-primary);
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .record-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+            font-size: 0.95em;
+            color: var(--text-secondary);
+        }
+
+        .record-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .record-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .calendar-container {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 10px;
+            color: var(--text-secondary);
+        }
+
+        .calendar-day {
+            height: 120px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .calendar-day:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .calendar-day.has-show {
+            border-color: var(--primary);
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.3;
+        }
+
+        .day-number {
+            font-weight: 600;
+            font-size: 0.85em;
+            padding: 4px 6px;
+            background: rgba(255, 255, 255, 0.95);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            border-bottom-right-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .calendar-day.has-show .day-number {
+            background: rgba(139, 38, 53, 0.9);
+            color: white;
+        }
+
+        .day-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .day-image-split {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            min-height: 0;
+        }
+
+        .day-image-split:last-child {
+            border-bottom: none;
+        }
+
+        .day-image-split img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .day-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
+            color: white;
+            font-size: 0.65em;
+            padding: 3px 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
+        .day-text-only {
+            padding: 28px 6px 6px 6px;
+            font-size: 0.75em;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            overflow-y: auto;
+        }
+
+        .day-text-item {
+            padding: 3px 5px;
+            background: var(--primary);
+            color: white;
+            border-radius: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .cast-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.9em;
+        }
+
+        .cast-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .cast-badge.watched {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cast-badge-count {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7em;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .show-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .show-card-preview {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 2px solid var(--border);
+        }
+
+        .show-card-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .show-card-preview img {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+        }
+
+        .show-card-info {
+            padding: 12px;
+        }
+
+        .show-card-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .show-card-venue {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .show-card-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        .unlock-progress {
+            background: var(--bg-main);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .unlock-stats {
+            font-size: 1.2em;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .unlock-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .unlock-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-primary);
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .role-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-main);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .role-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .cast-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .show-info-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .show-poster {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
+            margin-bottom: 15px;
+        }
+
+        .role-input-group {
+            background: var(--bg-main);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cast-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .cast-input-row input {
+            flex: 1;
+        }
+
+        .btn-remove {
+            padding: 8px 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn-add-small {
+            padding: 6px 12px;
+            font-size: 0.85em;
+        }
+
+        .show-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .show-grid-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+        }
+
+        .show-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .show-grid-poster {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            background: var(--bg-main);
+        }
+
+        .show-grid-info {
+            padding: 12px;
+        }
+
+        .show-grid-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .show-grid-stats {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        .show-detail-modal .modal-content {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .unlock-progress {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #9F8FD9 100%);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .unlock-progress-bar {
+            width: 100px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .unlock-progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .autocomplete-dropdown {
+            position: absolute;
+            background: white;
+            border: 2px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            width: 100%;
+            box-shadow: 0 4px 12px var(--shadow);
+            display: none;
+        }
+
+        .autocomplete-dropdown.active {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover {
+            background: var(--bg-main);
+        }
+
+        .autocomplete-item strong {
+            color: var(--primary);
+        }
+
+        .batch-parse-section {
+            background: var(--bg-main);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .batch-parse-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+        }
+
+        .batch-parse-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .batch-parse-hint {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .ranking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--bg-main);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .ranking-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .ranking-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 50px;
+        }
+
+        .ranking-number.top {
+            color: var(--primary);
+            font-size: 2em;
+        }
+
+        .ranking-name {
+            flex: 1;
+            font-weight: 500;
+            margin: 0 20px;
+        }
+
+        .ranking-count {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .stat-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .image-upload {
+            margin-top: 10px;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .image-preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .calendar-grid {
+                gap: 5px;
+            }
+
+            .calendar-day {
+                height: 100px;
+            }
+
+            .day-number {
+                font-size: 0.7em;
+                padding: 3px 5px;
+            }
+
+            .day-text-only {
+                padding: 24px 5px 5px 5px;
+                gap: 2px;
+            }
+
+            .day-text-item {
+                font-size: 0.8em;
+                padding: 2px 4px;
+            }
+
+            .day-image-overlay {
+                font-size: 0.6em;
+                padding: 2px 4px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的观演记录</h1>
+            <div class="subtitle">多看好剧少被创</div>
+        </header>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="switchTab('add')">➕ 添加记录</div>
+            <div class="nav-tab" onclick="switchTab('list')">📋 所有记录</div>
+            <div class="nav-tab" onclick="switchTab('calendar')">📅 日历视图</div>
+            <div class="nav-tab" onclick="switchTab('rankings')">📊 排行榜</div>
+            <div class="nav-tab" onclick="switchTab('summary')">📈 统计总结</div>
+            <div class="nav-tab" onclick="switchTab('showInfo')">📖 剧目信息</div>
+            <div class="nav-tab" onclick="switchTab('data')">💾 数据管理</div>
+        </div>
+
+        <!-- 添加记录 -->
+        <div id="tab-add" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title">添加新记录</h2>
+                <form id="addForm">
+                    <div class="form-group">
+                        <label>剧目名称 *</label>
+                        <div style="position: relative;">
+                            <input type="text" id="showName" required autocomplete="off">
+                            <div id="showNameDropdown" class="autocomplete-dropdown"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>剧种 *</label>
+                        <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button type="button" class="btn btn-small btn-secondary" onclick="document.getElementById('showType').value='音乐剧'">音乐剧</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="document.getElementById('showType').value='话剧'">话剧</button>
+                        </div>
+                        <input type="text" id="showType" placeholder="例如：音乐剧、歌剧、话剧" required>
+                    </div>
+                    <div class="form-group">
+                        <label>观演日期 *</label>
+                        <input type="date" id="showDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>具体时间</label>
+                        <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('14:00')">14:00</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('14:30')">14:30</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('17:00')">17:00</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('19:00')">19:00</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('19:30')">19:30</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('20:00')">20:00</button>
+                            <button type="button" class="btn btn-small btn-secondary" onclick="setTime('20:30')">20:30</button>
+                        </div>
+                        <input type="time" id="showTime" placeholder="或自己填写时间">
+                    </div>
+                    <div class="form-group">
+                        <label>卡司</label>
+                        
+                        <!-- 如果剧目有卡司信息，显示按角色分组的按钮 -->
+                        <div id="castSelectionArea" style="display: none; margin-bottom: 15px;">
+                            <div id="castButtonsByRole"></div>
+                        </div>
+                        
+                        <div class="batch-parse-section">
+                            <label style="font-weight: 600; margin-bottom: 8px; display: block;">批量识别演员</label>
+                            <textarea id="castBatchInput" class="batch-parse-textarea" placeholder="粘贴演员列表，每行一个或用逗号分隔&#10;例如：&#10;张三&#10;李四&#10;王五&#10;&#10;或：张三, 李四, 王五"></textarea>
+                            <div class="batch-parse-hint">💡 粘贴后自动识别，支持换行或逗号分隔</div>
+                        </div>
+                        <label style="font-weight: 600; margin-top: 15px; display: block;">或手动输入（多个演员用逗号分隔）</label>
+                        <input type="text" id="showCast" placeholder="例如：张三, 李四, 王五">
+                    </div>
+                    <div class="form-group">
+                        <label>座位</label>
+                        <input type="text" id="showSeat" placeholder="例如：一楼5排8座">
+                    </div>
+                    <div class="form-group">
+                        <label>备注</label>
+                        <textarea id="showNotes" placeholder="记录你的观演感受..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>照片（可选）</label>
+                        <input type="file" id="showImages" accept="image/*" multiple class="image-upload">
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <button type="submit" class="btn">保存记录</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 所有记录 -->
+        <div id="tab-list" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">所有观演记录</h2>
+                <div id="recordsList" class="records-list"></div>
+            </div>
+        </div>
+
+        <!-- 日历视图 -->
+        <div id="tab-calendar" class="tab-content">
+            <div class="card">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h2 class="calendar-title" id="calendarTitle"></h2>
+                        <div class="calendar-nav">
+                            <button class="btn btn-small" onclick="changeMonth(-1)">← 上月</button>
+                            <button class="btn btn-small btn-secondary" onclick="goToToday()">今天</button>
+                            <button class="btn btn-small" onclick="changeMonth(1)">下月 →</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 排行榜 -->
+        <div id="tab-rankings" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">剧目观看次数排行</h2>
+                <div id="showsRanking"></div>
+            </div>
+            <div class="card" style="margin-top: 20px;">
+                <h2 class="card-title">演员观看次数排行</h2>
+                <div id="actorsRanking"></div>
+            </div>
+        </div>
+
+        <!-- 统计总结 -->
+        <div id="tab-summary" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">观演统计</h2>
+                <div class="stats-grid" id="statsOverall"></div>
+                
+                <h3 class="card-title" style="margin-top: 30px;">月度统计</h3>
+                <div id="monthlyStats"></div>
+                
+                <h3 class="card-title" style="margin-top: 30px;">年度统计</h3>
+                <div id="yearlyStats"></div>
+            </div>
+        </div>
+
+        <!-- 剧目信息 -->
+        <!-- 剧目信息 -->
+        <div id="tab-showInfo" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">剧目信息管理</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <p style="color: var(--text-secondary);">管理剧目的详细信息，包括海报、演出地点、角色和卡司</p>
+                    <button class="btn" onclick="showAddShowInfoModal()">➕ 添加剧目信息</button>
+                </div>
+                <div id="showInfoList"></div>
+            </div>
+        </div>
+
+        <!-- 数据管理 -->
+        <div id="tab-data" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">数据管理</h2>
+                
+                <!-- GitHub 自动同步设置 -->
+                <div style="padding: 25px; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border-radius: 12px; margin-bottom: 30px; border: 2px solid #81C784;">
+                    <h3 style="font-size: 1.3em; margin-bottom: 15px; color: #2E7D32;">🔄 GitHub 自动同步</h3>
+                    <p style="color: #1B5E20; margin-bottom: 20px; line-height: 1.8;">
+                        启用后，所有记录将自动保存到你的GitHub仓库，实现跨设备自动同步。只需设置一次，永久有效！
+                    </p>
+                    
+                    <div id="githubStatus" style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">同步状态：<span id="syncStatusText">未启用</span></div>
+                        <div style="font-size: 0.9em; color: var(--text-secondary);" id="syncStatusDetail">请先配置GitHub Token</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #1B5E20;">GitHub Token（访问令牌）</label>
+                        <input type="password" id="githubToken" placeholder="粘贴你的 GitHub Token (ghp_...)" 
+                               style="width: 100%; padding: 12px; border: 2px solid #81C784; border-radius: 8px; font-family: monospace;">
+                        <div style="font-size: 0.85em; color: #2E7D32; margin-top: 5px;">
+                            Token已加密保存在本地，不会泄露
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn" onclick="saveGitHubToken()" style="background: #2E7D32;">保存Token并启用同步</button>
+                        <button class="btn btn-secondary" onclick="testGitHubConnection()">测试连接</button>
+                        <button class="btn" onclick="manualSync()" style="background: #1976D2;">立即同步</button>
+                    </div>
+                </div>
+                
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                    通过导出和导入功能，你也可以手动在不同设备间同步观演记录。
+                </p>
+                
+                <div style="display: grid; gap: 20px; margin-bottom: 30px;">
+                    <div style="padding: 25px; background: var(--bg-main); border-radius: 12px; border-left: 4px solid var(--primary);">
+                        <h3 style="font-size: 1.2em; margin-bottom: 12px; color: var(--primary);">📤 导出数据</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.95em;">
+                            将所有记录导出为JSON文件，可以保存到云盘或发送到其他设备。
+                        </p>
+                        <button class="btn" onclick="exportData()">导出所有记录</button>
+                    </div>
+                    
+                    <div style="padding: 25px; background: var(--bg-main); border-radius: 12px; border-left: 4px solid var(--secondary);">
+                        <h3 style="font-size: 1.2em; margin-bottom: 12px; color: var(--primary);">📥 导入数据</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.95em;">
+                            从之前导出的文件中恢复记录。可以选择覆盖当前数据或合并数据。
+                        </p>
+                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImportFile(event)">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">选择文件导入</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding: 20px; background: #FFF9E6; border-radius: 12px; border: 2px solid #FFE4A3;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; color: #8B7500;">💡 使用提示</h3>
+                    <ul style="color: #6B5500; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>GitHub同步</strong>：启用后每次保存都会自动上传到GitHub，其他设备打开网站时自动加载最新数据</li>
+                        <li><strong>手动导出</strong>：定期导出数据作为备份，防止数据丢失</li>
+                        <li>导出的文件可以保存到云盘（如百度网盘、iCloud等）</li>
+                        <li>在新设备上打开网站后，导入之前导出的文件即可恢复数据</li>
+                        <li>导入时会提示你选择覆盖或合并，合并模式会保留两边的数据</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: #FFE5E5; border-radius: 12px; border: 2px solid #FFB3B3;">
+                    <h3 style="font-size: 1.1em; margin-bottom: 10px; color: #C00000;">⚠️ 危险操作</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.95em;">
+                        清空所有数据将无法恢复，请谨慎操作。建议先导出备份。
+                    </p>
+                    <button class="btn" onclick="clearAllData()" style="background: #dc3545;">清空所有数据</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑模态框 -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">编辑记录</h3>
+                <button class="close-btn" onclick="closeEditModal()">×</button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label>剧目名称 *</label>
+                    <div style="position: relative;">
+                        <input type="text" id="editShowName" required autocomplete="off">
+                        <div id="editShowNameDropdown" class="autocomplete-dropdown"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>剧种 *</label>
+                    <input type="text" id="editShowType" required>
+                </div>
+                <div class="form-group">
+                    <label>观演日期 *</label>
+                    <input type="date" id="editShowDate" required>
+                </div>
+                <div class="form-group">
+                    <label>具体时间</label>
+                    <input type="time" id="editShowTime">
+                </div>
+                <div class="form-group">
+                    <label>卡司</label>
+                    <div class="batch-parse-section">
+                        <label style="font-weight: 600; margin-bottom: 8px; display: block;">批量识别演员</label>
+                        <textarea id="editCastBatchInput" class="batch-parse-textarea" placeholder="粘贴演员列表，每行一个或用逗号分隔"></textarea>
+                        <div class="batch-parse-hint">💡 粘贴后自动识别，支持换行或逗号分隔</div>
+                    </div>
+                    <label style="font-weight: 600; margin-top: 15px; display: block;">或手动输入（多个演员用逗号分隔）</label>
+                    <input type="text" id="editShowCast">
+                </div>
+                <div class="form-group">
+                    <label>座位</label>
+                    <input type="text" id="editShowSeat">
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <textarea id="editShowNotes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>照片</label>
+                    <div id="editImagePreview" class="image-preview"></div>
+                    <input type="file" id="editShowImages" accept="image/*" multiple class="image-upload">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn">保存修改</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 日历详情模态框 -->
+    <div id="dayModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="dayModalTitle"></h3>
+                <button class="close-btn" onclick="closeDayModal()">×</button>
+            </div>
+            <div id="dayModalContent"></div>
+        </div>
+    </div>
+
+    <!-- 剧目信息模态框 -->
+    <div id="showInfoModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="showInfoModalTitle">添加剧目信息</h3>
+                <button class="close-btn" onclick="closeShowInfoModal()">×</button>
+            </div>
+            <form id="showInfoForm">
+                <input type="hidden" id="showInfoId">
+                <div class="form-group">
+                    <label>剧目名称 *</label>
+                    <input type="text" id="showInfoName" required>
+                </div>
+                <div class="form-group">
+                    <label>演出地点</label>
+                    <input type="text" id="showInfoVenue" placeholder="例如：上海文化广场">
+                </div>
+                <div class="form-group">
+                    <label>剧目海报</label>
+                    <input type="file" id="showInfoPoster" accept="image/*">
+                    <div id="posterPreview" style="margin-top: 10px;"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>角色与卡司</label>
+                    <p style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+                        为每个角色添加卡司。同一演员可以在多个角色中出现。
+                    </p>
+                    <div id="rolesContainer"></div>
+                    <button type="button" class="btn btn-secondary btn-add-small" onclick="addRoleInput()">+ 添加角色</button>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn">保存剧目信息</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeShowInfoModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 剧目详情模态框 -->
+    <div id="showDetailModal" class="modal show-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="showDetailTitle"></h3>
+                <button class="close-btn" onclick="closeShowDetailModal()">×</button>
+            </div>
+            <div id="showDetailContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // GitHub 同步配置
+        const GITHUB_CONFIG = {
+            username: 'auriarw',
+            repo: 'guanjujilu.github.io',
+            branch: 'main',
+            dataFile: 'show-records-data.json',
+            token: '' // 将在设置中配置
+        };
+        
+        // 数据存储
+        let records = JSON.parse(localStorage.getItem('musicalRecords') || '[]');
+        let showsInfo = JSON.parse(localStorage.getItem('showsInfo') || '[]');
+        let manualWatchCounts = JSON.parse(localStorage.getItem('manualWatchCounts') || '{}');
+        let currentMonth = new Date();
+        let currentEditId = null;
+        let tempImages = [];
+        let editTempImages = [];
+        let tempPoster = null;
+        let isSyncing = false;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成');
+            
+            // 加载GitHub配置
+            loadGitHubConfig();
+            
+            // 尝试从GitHub加载数据
+            syncFromGitHub().then(() => {
+                console.log('当前记录数:', records.length);
+                loadRecords();
+                renderCalendar();
+            }).catch(err => {
+                console.log('GitHub同步失败，使用本地数据:', err.message);
+                console.log('当前记录数:', records.length);
+                loadRecords();
+                renderCalendar();
+            });
+            
+            // 表单提交
+            const addForm = document.getElementById('addForm');
+            if (addForm) {
+                addForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('表单提交被触发');
+                    addRecord();
+                    return false;
+                });
+            }
+            
+            const editForm = document.getElementById('editForm');
+            if (editForm) {
+                editForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateRecord();
+                    return false;
+                });
+            }
+            
+            // 图片上传预览
+            document.getElementById('showImages').addEventListener('change', handleImageUpload);
+            document.getElementById('editShowImages').addEventListener('change', handleEditImageUpload);
+            
+            // 剧目名称自动补全
+            setupShowNameAutocomplete('showName', 'showNameDropdown');
+            setupShowNameAutocomplete('editShowName', 'editShowNameDropdown');
+            
+            // 卡司批量识别
+            setupCastBatchParse('castBatchInput', 'showCast');
+            setupCastBatchParse('editCastBatchInput', 'editShowCast');
+            
+            // 加载保存的token到输入框
+            if (GITHUB_CONFIG.token) {
+                document.getElementById('githubToken').value = GITHUB_CONFIG.token;
+            }
+        });
+
+
+        // ============ 剧目名称自动补全功能 ============
+        
+        function setupShowNameAutocomplete(inputId, dropdownId) {
+            const input = document.getElementById(inputId);
+            const dropdown = document.getElementById(dropdownId);
+            
+            if (!input || !dropdown) return;
+            
+            // 输入时显示建议
+            input.addEventListener('input', function() {
+                const value = this.value.trim().toLowerCase();
+                
+                // 如果是添加记录表单，更新卡司选择
+                if (inputId === 'showName') {
+                    updateCastSelection();
+                }
+                
+                if (!value) {
+                    dropdown.classList.remove('active');
+                    return;
+                }
+                
+                // 获取所有唯一的剧目名称（从记录和剧目信息中）
+                const showNames = new Set();
+                records.forEach(r => showNames.add(r.showName));
+                showsInfo.forEach(s => showNames.add(s.name));
+                
+                // 过滤匹配的剧目
+                const matches = Array.from(showNames).filter(name => 
+                    name.toLowerCase().includes(value)
+                );
+                
+                if (matches.length === 0) {
+                    dropdown.classList.remove('active');
+                    return;
+                }
+                
+                // 显示建议列表
+                dropdown.innerHTML = matches.slice(0, 5).map(name => {
+                    // 高亮匹配的部分
+                    const index = name.toLowerCase().indexOf(value);
+                    const before = name.substring(0, index);
+                    const match = name.substring(index, index + value.length);
+                    const after = name.substring(index + value.length);
+                    
+                    return `
+                        <div class="autocomplete-item" data-value="${name}">
+                            ${before}<strong>${match}</strong>${after}
+                        </div>
+                    `;
+                }).join('');
+                
+                dropdown.classList.add('active');
+                
+                // 点击建议项
+                dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        input.value = this.dataset.value;
+                        dropdown.classList.remove('active');
+                        
+                        // 如果是添加记录表单，更新卡司选择
+                        if (inputId === 'showName') {
+                            updateCastSelection();
+                        }
+                    });
+                });
+            });
+            
+            // 点击外部关闭下拉框
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            // 失焦时关闭
+            input.addEventListener('blur', function() {
+                setTimeout(() => dropdown.classList.remove('active'), 200);
+            });
+        }
+        
+        // ============ 卡司批量识别功能 ============
+        
+        function setupCastBatchParse(textareaId, targetInputId) {
+            const textarea = document.getElementById(textareaId);
+            const targetInput = document.getElementById(targetInputId);
+            
+            if (!textarea || !targetInput) return;
+            
+            textarea.addEventListener('input', function() {
+                const text = this.value.trim();
+                
+                if (!text) {
+                    return;
+                }
+                
+                // 解析演员列表
+                const casts = parseCastList(text);
+                
+                if (casts.length > 0) {
+                    // 自动填充到目标输入框
+                    targetInput.value = casts.join(', ');
+                }
+            });
+        }
+        
+        function parseCastList(text) {
+            // 先按换行分割
+            let lines = text.split('\n').map(line => line.trim()).filter(line => line);
+            
+            // 再处理每行中的逗号分隔
+            let casts = [];
+            lines.forEach(line => {
+                if (line.includes(',') || line.includes('，')) {
+                    // 如果包含逗号，按逗号分割
+                    const parts = line.split(/[,，]/).map(p => p.trim()).filter(p => p);
+                    casts.push(...parts);
+                } else {
+                    // 否则整行作为一个名字
+                    casts.push(line);
+                }
+            });
+            
+            // 去重
+            return [...new Set(casts)];
+        }
+
+        // ============ 快捷选择功能 ============
+        
+        // 设置时间
+        function setTime(time) {
+            document.getElementById('showTime').value = time;
+        }
+        
+        // 存储当前选择的演员及其角色信息
+        let selectedCastsWithRoles = [];
+        
+        // 根据剧目名称更新卡司选择
+        function updateCastSelection() {
+            const showName = document.getElementById('showName').value.trim();
+            const castSelectionArea = document.getElementById('castSelectionArea');
+            const castButtonsByRole = document.getElementById('castButtonsByRole');
+            
+            // 清空之前的选择
+            selectedCastsWithRoles = [];
+            
+            if (!showName) {
+                castSelectionArea.style.display = 'none';
+                return;
+            }
+            
+            // 查找对应的剧目信息
+            const showInfo = showsInfo.find(s => s.name === showName);
+            
+            if (!showInfo || !showInfo.roles || showInfo.roles.length === 0) {
+                castSelectionArea.style.display = 'none';
+                return;
+            }
+            
+            // 显示选择区域
+            castSelectionArea.style.display = 'block';
+            
+            // 按角色生成按钮组
+            castButtonsByRole.innerHTML = showInfo.roles.map(role => {
+                if (!role.casts || role.casts.length === 0) return '';
+                
+                return `
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-weight: 600; margin-bottom: 6px; color: var(--text-secondary); font-size: 0.9em;">
+                            ${role.roleName}
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            ${role.casts.map(castName => `
+                                <button type="button" 
+                                        class="btn btn-small btn-secondary cast-select-btn" 
+                                        data-role="${role.roleName}" 
+                                        data-cast="${castName}"
+                                        onclick="toggleCastSelection('${role.roleName}', '${castName}', this)">
+                                    ${castName}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 切换演员选择状态
+        function toggleCastSelection(roleName, castName, button) {
+            const key = `${roleName}|||${castName}`;
+            const index = selectedCastsWithRoles.findIndex(item => item.key === key);
+            
+            if (index >= 0) {
+                // 取消选择
+                selectedCastsWithRoles.splice(index, 1);
+                button.style.background = '';
+                button.style.opacity = '';
+            } else {
+                // 选中
+                selectedCastsWithRoles.push({
+                    key: key,
+                    roleName: roleName,
+                    castName: castName
+                });
+                button.style.background = 'var(--primary)';
+                button.style.opacity = '0.8';
+            }
+            
+            // 更新输入框（只显示演员名字）
+            updateCastInputFromSelection();
+        }
+        
+        // 更新卡司输入框
+        function updateCastInputFromSelection() {
+            const castNames = selectedCastsWithRoles.map(item => item.castName);
+            document.getElementById('showCast').value = castNames.join(', ');
+        }
+
+        // 切换标签页
+        function switchTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // 找到被点击的标签
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                const text = tab.textContent.trim();
+                if (text.includes('添加记录') && tabName === 'add') tab.classList.add('active');
+                if (text.includes('所有记录') && tabName === 'list') tab.classList.add('active');
+                if (text.includes('日历视图') && tabName === 'calendar') tab.classList.add('active');
+                if (text.includes('排行榜') && tabName === 'rankings') tab.classList.add('active');
+                if (text.includes('统计总结') && tabName === 'summary') tab.classList.add('active');
+                if (text.includes('剧目信息') && tabName === 'showInfo') tab.classList.add('active');
+                if (text.includes('数据管理') && tabName === 'data') tab.classList.add('active');
+            });
+            
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            // 加载对应内容
+            if (tabName === 'list') loadRecords();
+            if (tabName === 'calendar') renderCalendar();
+            if (tabName === 'rankings') {
+                renderShowsRanking();
+                renderActorsRanking();
+            }
+            if (tabName === 'summary') renderSummary();
+            if (tabName === 'showInfo') renderShowInfoList();
+        }
+
+        // 图片上传处理
+        function handleImageUpload(e) {
+            const files = Array.from(e.target.files);
+            tempImages = [];
+            
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    tempImages.push(event.target.result);
+                    renderImagePreview('imagePreview', tempImages);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function handleEditImageUpload(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    editTempImages.push(event.target.result);
+                    renderImagePreview('editImagePreview', editTempImages);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function renderImagePreview(containerId, images) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = images.map((img, index) => `
+                <div class="image-preview-item">
+                    <img src="${img}" alt="预览">
+                    <button type="button" class="image-remove" onclick="removeImage('${containerId}', ${index})">×</button>
+                </div>
+            `).join('');
+        }
+
+        function removeImage(containerId, index) {
+            if (containerId === 'imagePreview') {
+                tempImages.splice(index, 1);
+                renderImagePreview('imagePreview', tempImages);
+            } else {
+                editTempImages.splice(index, 1);
+                renderImagePreview('editImagePreview', editTempImages);
+            }
+        }
+
+        // 添加记录
+        function addRecord() {
+            console.log('addRecord函数被调用');
+            
+            const showName = document.getElementById('showName').value;
+            const showType = document.getElementById('showType').value;
+            const date = document.getElementById('showDate').value;
+            
+            console.log('表单数据:', { showName, showType, date });
+            
+            if (!showName || !showType || !date) {
+                alert('请填写必填项：剧目名称、剧种和观演日期');
+                return;
+            }
+            
+            const record = {
+                id: Date.now(),
+                showName: showName,
+                showType: showType,
+                date: date,
+                time: document.getElementById('showTime').value,
+                cast: document.getElementById('showCast').value.split(',').map(s => s.trim()).filter(s => s),
+                castWithRoles: [...selectedCastsWithRoles], // 保存带角色信息的卡司
+                seat: document.getElementById('showSeat').value,
+                notes: document.getElementById('showNotes').value,
+                images: [...tempImages], // 复制数组
+                createdAt: new Date().toISOString()
+            };
+            
+            console.log('创建的记录:', record);
+            
+            records.push(record);
+            console.log('添加后总记录数:', records.length);
+            
+            saveRecords();
+            console.log('保存到localStorage完成');
+            
+            // 重置表单和图片
+            document.getElementById('addForm').reset();
+            tempImages = [];
+            selectedCastsWithRoles = [];
+            document.getElementById('imagePreview').innerHTML = '';
+            document.getElementById('castSelectionArea').style.display = 'none';
+            
+            alert('记录添加成功！\n已保存到本地存储\n当前共有 ' + records.length + ' 条记录');
+            
+            // 保持在添加记录页面，不跳转
+        }
+
+        // 加载记录列表
+        function loadRecords() {
+            const container = document.getElementById('recordsList');
+            
+            if (records.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎭</div>
+                        <p>还没有观演记录，快去添加第一条记录吧！</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 按日期排序（字符串比较即可，因为是YYYY-MM-DD格式）
+            const sortedRecords = [...records].sort((a, b) => {
+                // 先按日期排序
+                const dateCompare = b.date.localeCompare(a.date);
+                if (dateCompare !== 0) return dateCompare;
+                // 日期相同则按时间排序
+                if (a.time && b.time) {
+                    return b.time.localeCompare(a.time);
+                }
+                return 0;
+            });
+            
+            container.innerHTML = sortedRecords.map(record => `
+                <div class="record-item">
+                    <div class="record-header">
+                        <div>
+                            <div class="record-title">${record.showName}</div>
+                            <span class="record-type">${record.showType}</span>
+                        </div>
+                    </div>
+                    <div class="record-details">
+                        <div class="record-detail">📅 ${formatDate(record.date)}</div>
+                        ${record.time ? `<div class="record-detail">⏰ ${record.time}</div>` : ''}
+                        ${record.seat ? `<div class="record-detail">💺 ${record.seat}</div>` : ''}
+                        ${record.cast.length > 0 ? `<div class="record-detail">⭐ ${record.cast.join(', ')}</div>` : ''}
+                    </div>
+                    ${record.notes ? `<div style="margin-top: 12px; color: var(--text-secondary);">${record.notes}</div>` : ''}
+                    ${record.images && record.images.length > 0 ? `
+                        <div class="image-preview" style="margin-top: 12px;">
+                            ${record.images.map(img => `
+                                <div class="image-preview-item">
+                                    <img src="${img}" alt="演出照片">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    <div class="record-actions">
+                        <button class="btn btn-small btn-secondary" onclick="editRecord(${record.id})">编辑</button>
+                        <button class="btn btn-small" onclick="deleteRecord(${record.id})" style="background: #dc3545;">删除</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 编辑记录
+        function editRecord(id) {
+            const record = records.find(r => r.id === id);
+            if (!record) return;
+            
+            currentEditId = id;
+            editTempImages = record.images || [];
+            
+            document.getElementById('editId').value = record.id;
+            document.getElementById('editShowName').value = record.showName;
+            document.getElementById('editShowType').value = record.showType;
+            document.getElementById('editShowDate').value = record.date;
+            document.getElementById('editShowTime').value = record.time || '';
+            document.getElementById('editShowCast').value = record.cast.join(', ');
+            document.getElementById('editShowSeat').value = record.seat || '';
+            document.getElementById('editShowNotes').value = record.notes || '';
+            
+            renderImagePreview('editImagePreview', editTempImages);
+            
+            document.getElementById('editModal').classList.add('active');
+        }
+
+        // 更新记录
+        function updateRecord() {
+            const id = parseInt(document.getElementById('editId').value);
+            const index = records.findIndex(r => r.id === id);
+            
+            if (index !== -1) {
+                records[index] = {
+                    ...records[index],
+                    showName: document.getElementById('editShowName').value,
+                    showType: document.getElementById('editShowType').value,
+                    date: document.getElementById('editShowDate').value,
+                    time: document.getElementById('editShowTime').value,
+                    cast: document.getElementById('editShowCast').value.split(',').map(s => s.trim()).filter(s => s),
+                    seat: document.getElementById('editShowSeat').value,
+                    notes: document.getElementById('editShowNotes').value,
+                    images: editTempImages
+                };
+                
+                saveRecords();
+                closeEditModal();
+                alert('记录更新成功！');
+                
+                // 刷新当前视图
+                const activeTab = document.querySelector('.tab-content.active');
+                if (activeTab.id === 'tab-list') {
+                    loadRecords();
+                } else if (activeTab.id === 'tab-calendar') {
+                    renderCalendar();
+                }
+            }
+        }
+
+        // 删除记录
+        function deleteRecord(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                records = records.filter(r => r.id !== id);
+                saveRecords();
+                
+                // 刷新当前视图
+                const activeTab = document.querySelector('.tab-content.active');
+                if (activeTab.id === 'tab-list') {
+                    loadRecords();
+                } else if (activeTab.id === 'tab-calendar') {
+                    renderCalendar();
+                }
+            }
+        }
+
+        // 关闭编辑模态框
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('active');
+            currentEditId = null;
+            editTempImages = [];
+        }
+
+        // 渲染日历
+        function renderCalendar() {
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            
+            document.getElementById('calendarTitle').textContent = `${year}年${month + 1}月`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+            
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            // 星期标题
+            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+            weekdays.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                grid.appendChild(header);
+            });
+            
+            // 上月日期
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const day = daysInPrevMonth - i;
+                const dayEl = createCalendarDay(day, year, month - 1, true);
+                grid.appendChild(dayEl);
+            }
+            
+            // 当月日期
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = createCalendarDay(day, year, month, false);
+                grid.appendChild(dayEl);
+            }
+            
+            // 下月日期
+            const remainingDays = 42 - (firstDay + daysInMonth);
+            for (let day = 1; day <= remainingDays; day++) {
+                const dayEl = createCalendarDay(day, year, month + 1, true);
+                grid.appendChild(dayEl);
+            }
+        }
+
+        function createCalendarDay(day, year, month, isOtherMonth) {
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            let dayRecords = records.filter(r => r.date === dateStr);
+            
+            // 按时间排序
+            dayRecords.sort((a, b) => {
+                if (!a.time && !b.time) return 0;
+                if (!a.time) return 1;
+                if (!b.time) return -1;
+                return a.time.localeCompare(b.time);
+            });
+            
+            const dayEl = document.createElement('div');
+            dayEl.className = 'calendar-day';
+            if (isOtherMonth) dayEl.classList.add('other-month');
+            if (dayRecords.length > 0) dayEl.classList.add('has-show');
+            
+            // 为每条记录获取剧目海报（只使用剧目信息中的海报）
+            const recordsWithImages = dayRecords.map(record => {
+                // 查找对应的剧目信息
+                const showInfo = showsInfo.find(s => s.name === record.showName);
+                let image = null;
+                
+                // 只使用剧目海报
+                if (showInfo && showInfo.poster) {
+                    image = showInfo.poster;
+                }
+                
+                return {
+                    record: record,
+                    image: image
+                };
+            }).filter(item => item.image); // 只保留有海报的
+            
+            let contentHtml = '';
+            
+            if (recordsWithImages.length > 0) {
+                // 如果有海报，按时间顺序上下排列所有有海报的记录
+                contentHtml = recordsWithImages.map(item => `
+                    <div class="day-image-split">
+                        <img src="${item.image}" alt="${item.record.showName}">
+                        <div class="day-image-overlay">${item.record.showName}${item.record.time ? ' ' + item.record.time : ''}</div>
+                    </div>
+                `).join('');
+            } else {
+                // 如果没有海报，只显示剧名
+                contentHtml = `
+                    <div class="day-text-only">
+                        ${dayRecords.map(record => `
+                            <div class="day-text-item">${record.showName}</div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            dayEl.innerHTML = `
+                <div class="day-number">${day}</div>
+                <div class="day-content">
+                    ${contentHtml}
+                </div>
+            `;
+            
+            if (dayRecords.length > 0) {
+                dayEl.onclick = () => showDayDetail(dateStr, dayRecords);
+            }
+            
+            return dayEl;
+        }
+
+        function showDayDetail(date, dayRecords) {
+            document.getElementById('dayModalTitle').textContent = formatDate(date);
+            document.getElementById('dayModalContent').innerHTML = dayRecords.map(record => `
+                <div class="record-item" style="margin-bottom: 15px;">
+                    <div class="record-title">${record.showName}</div>
+                    <div class="record-type">${record.showType}</div>
+                    ${record.time ? `<div style="margin-top: 8px;">⏰ ${record.time}</div>` : ''}
+                    ${record.cast.length > 0 ? `<div style="margin-top: 4px;">⭐ ${record.cast.join(', ')}</div>` : ''}
+                    ${record.seat ? `<div style="margin-top: 4px;">💺 ${record.seat}</div>` : ''}
+                    ${record.notes ? `<div style="margin-top: 8px; color: var(--text-secondary);">${record.notes}</div>` : ''}
+                    ${record.images && record.images.length > 0 ? `
+                        <div class="image-preview" style="margin-top: 10px;">
+                            ${record.images.map(img => `
+                                <div class="image-preview-item" style="width: 120px; height: 120px;">
+                                    <img src="${img}" alt="演出照片">
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            document.getElementById('dayModal').classList.add('active');
+        }
+
+        function closeDayModal() {
+            document.getElementById('dayModal').classList.remove('active');
+        }
+
+        function changeMonth(delta) {
+            currentMonth.setMonth(currentMonth.getMonth() + delta);
+            renderCalendar();
+        }
+
+        function goToToday() {
+            currentMonth = new Date();
+            renderCalendar();
+        }
+
+        // 剧目排行
+        function renderShowsRanking() {
+            const showCounts = {};
+            records.forEach(record => {
+                showCounts[record.showName] = (showCounts[record.showName] || 0) + 1;
+            });
+            
+            const sorted = Object.entries(showCounts).sort((a, b) => b[1] - a[1]);
+            const container = document.getElementById('showsRanking');
+            
+            if (sorted.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎭</div>
+                        <p>暂无剧目数据</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = sorted.map(([name, count], index) => `
+                <div class="ranking-item">
+                    <div class="ranking-number ${index < 3 ? 'top' : ''}">${index + 1}</div>
+                    <div class="ranking-name">${name}</div>
+                    <div class="ranking-count">${count} 次</div>
+                </div>
+            `).join('');
+        }
+
+        // 演员排行
+        function renderActorsRanking() {
+            const actorCounts = {};
+            records.forEach(record => {
+                record.cast.forEach(actor => {
+                    if (actor) {
+                        actorCounts[actor] = (actorCounts[actor] || 0) + 1;
+                    }
+                });
+            });
+            
+            const sorted = Object.entries(actorCounts).sort((a, b) => b[1] - a[1]);
+            const container = document.getElementById('actorsRanking');
+            
+            if (sorted.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⭐</div>
+                        <p>暂无演员数据</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = sorted.map(([name, count], index) => `
+                <div class="ranking-item">
+                    <div class="ranking-number ${index < 3 ? 'top' : ''}">${index + 1}</div>
+                    <div class="ranking-name">${name}</div>
+                    <div class="ranking-count">${count} 次</div>
+                </div>
+            `).join('');
+        }
+
+        // 统计总结
+        function renderSummary() {
+            // 总体统计
+            const totalShows = records.length;
+            const uniqueShows = new Set(records.map(r => r.showName)).size;
+            const uniqueActors = new Set(records.flatMap(r => r.cast)).size;
+            
+            document.getElementById('statsOverall').innerHTML = `
+                <div class="stat-card">
+                    <span class="stat-number">${totalShows}</span>
+                    <span class="stat-label">总观演场次</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">${uniqueShows}</span>
+                    <span class="stat-label">不同剧目</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">${uniqueActors}</span>
+                    <span class="stat-label">不同演员</span>
+                </div>
+            `;
+            
+            // 月度统计
+            const monthlyData = {};
+            records.forEach(record => {
+                const month = record.date.substring(0, 7);
+                monthlyData[month] = (monthlyData[month] || 0) + 1;
+            });
+            
+            const sortedMonths = Object.entries(monthlyData).sort((a, b) => b[0].localeCompare(a[0]));
+            document.getElementById('monthlyStats').innerHTML = sortedMonths.map(([month, count]) => `
+                <div class="ranking-item">
+                    <div class="ranking-name">${month}</div>
+                    <div class="ranking-count">${count} 场</div>
+                </div>
+            `).join('');
+            
+            // 年度统计
+            const yearlyData = {};
+            records.forEach(record => {
+                const year = record.date.substring(0, 4);
+                yearlyData[year] = (yearlyData[year] || 0) + 1;
+            });
+            
+            const sortedYears = Object.entries(yearlyData).sort((a, b) => b[0].localeCompare(a[0]));
+            document.getElementById('yearlyStats').innerHTML = sortedYears.map(([year, count]) => `
+                <div class="ranking-item">
+                    <div class="ranking-name">${year}年</div>
+                    <div class="ranking-count">${count} 场</div>
+                </div>
+            `).join('');
+        }
+
+        // 工具函数
+        function formatDate(dateStr) {
+            // 直接解析YYYY-MM-DD格式，避免时区问题
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                const year = parts[0];
+                const month = parseInt(parts[1], 10);
+                const day = parseInt(parts[2], 10);
+                return `${year}年${month}月${day}日`;
+            }
+            return dateStr;
+        }
+
+        function saveRecords() {
+            try {
+                const dataStr = JSON.stringify(records);
+                localStorage.setItem('musicalRecords', dataStr);
+                console.log('数据已保存到localStorage，共', records.length, '条记录');
+                
+                // 如果启用了GitHub同步，自动上传
+                if (GITHUB_CONFIG.token && !isSyncing) {
+                    syncToGitHub().catch(err => {
+                        console.error('GitHub同步失败:', err);
+                    });
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('保存失败:', error);
+                alert('保存失败: ' + error.message);
+                return false;
+            }
+        }
+
+        // 导出数据
+        function exportData() {
+            if (records.length === 0) {
+                alert('当前没有任何记录可以导出');
+                return;
+            }
+            
+            const exportData = {
+                records: records,
+                showsInfo: showsInfo,
+                manualWatchCounts: manualWatchCounts
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            
+            // 使用当前日期作为文件名
+            const date = new Date();
+            const fileName = `观演记录_${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}.json`;
+            link.download = fileName;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            alert(`数据导出成功！\n共导出 ${records.length} 条记录`);
+        }
+
+        // 处理导入文件
+        function handleImportFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    // 重置同步标志，以防之前同步卡住
+                    isSyncing = false;
+                    
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    // 判断是新格式还是旧格式
+                    let importedRecords, importedShowsInfo, importedManualCounts;
+                    
+                    if (Array.isArray(importedData)) {
+                        // 旧格式：只有records数组
+                        importedRecords = importedData;
+                        importedShowsInfo = [];
+                        importedManualCounts = {};
+                    } else if (importedData.records && Array.isArray(importedData.records)) {
+                        // 新格式：包含records, showsInfo, manualWatchCounts
+                        importedRecords = importedData.records;
+                        importedShowsInfo = importedData.showsInfo || [];
+                        importedManualCounts = importedData.manualWatchCounts || {};
+                    } else {
+                        alert('文件格式错误，请选择正确的导出文件');
+                        return;
+                    }
+                    
+                    // 询问用户是覆盖还是合并
+                    const action = confirm(
+                        `检测到 ${importedRecords.length} 条记录，${importedShowsInfo.length} 个剧目信息\n\n` +
+                        `当前有 ${records.length} 条记录，${showsInfo.length} 个剧目信息\n\n` +
+                        `点击"确定"合并数据（保留现有记录）\n` +
+                        `点击"取消"覆盖数据（替换所有记录）`
+                    );
+                    
+                    if (action) {
+                        // 合并数据
+                        const existingRecordIds = new Set(records.map(r => r.id));
+                        const newRecords = importedRecords.filter(r => !existingRecordIds.has(r.id));
+                        records = [...records, ...newRecords];
+                        
+                        const existingShowIds = new Set(showsInfo.map(s => s.id));
+                        const newShows = importedShowsInfo.filter(s => !existingShowIds.has(s.id));
+                        showsInfo = [...showsInfo, ...newShows];
+                        
+                        // 合并手动次数记录
+                        manualWatchCounts = { ...manualWatchCounts, ...importedManualCounts };
+                        
+                        alert(`导入成功！\n新增 ${newRecords.length} 条记录\n新增 ${newShows.length} 个剧目信息\n总计 ${records.length} 条记录`);
+                    } else {
+                        // 覆盖数据
+                        if (confirm('确定要覆盖所有现有数据吗？此操作无法撤销！')) {
+                            records = importedRecords;
+                            showsInfo = importedShowsInfo;
+                            manualWatchCounts = importedManualCounts;
+                            alert(`导入成功！\n已覆盖为 ${records.length} 条记录\n${showsInfo.length} 个剧目信息`);
+                        } else {
+                            return;
+                        }
+                    }
+                    
+                    // 保存到localStorage（不触发自动同步）
+                    localStorage.setItem('musicalRecords', JSON.stringify(records));
+                    localStorage.setItem('showsInfo', JSON.stringify(showsInfo));
+                    localStorage.setItem('manualWatchCounts', JSON.stringify(manualWatchCounts));
+                    
+                    // 刷新显示
+                    loadRecords();
+                    renderShowInfoList();
+                    
+                    // 导入完成后统一同步一次
+                    if (GITHUB_CONFIG.token) {
+                        console.log('导入完成，开始同步到GitHub...');
+                        syncToGitHub().then(() => {
+                            console.log('导入的数据已同步到GitHub');
+                            alert('数据已导入并同步到GitHub！');
+                        }).catch(err => {
+                            console.error('同步失败:', err);
+                            alert('数据已导入到本地，但同步到GitHub失败：' + err.message);
+                        });
+                    }
+                    
+                } catch (error) {
+                    alert('文件解析失败，请确保选择的是正确的导出文件');
+                    console.error(error);
+                }
+            };
+            
+            reader.readAsText(file);
+            event.target.value = ''; // 重置文件输入
+        }
+
+        
+        // ============ 剧目信息管理功能 ============
+        
+        // 保存剧目信息到localStorage
+        function saveShowsInfo() {
+            localStorage.setItem('showsInfo', JSON.stringify(showsInfo));
+            // 同步到GitHub
+            syncToGitHub().catch(err => console.error('同步失败:', err));
+        }
+        
+        // 渲染剧目信息列表（卡片视图）
+        // 渲染剧目信息列表
+        function renderShowInfoList() {
+            const container = document.getElementById('showInfoList');
+            
+            if (showsInfo.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎭</div>
+                        <p>还没有添加剧目信息，点击上方按钮添加第一个剧目吧！</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="show-grid">
+                    ${showsInfo.map(show => {
+                        const watchStats = getShowWatchStats(show);
+                        return `
+                            <div class="show-grid-item" onclick="showShowDetailModal(${show.id})">
+                                ${show.poster ? 
+                                    `<img src="${show.poster}" class="show-grid-poster" alt="${show.name}">` : 
+                                    `<div class="show-grid-poster" style="display: flex; align-items: center; justify-content: center; color: var(--text-secondary); background: var(--bg-main);">暂无海报</div>`
+                                }
+                                <div class="show-grid-info">
+                                    <div class="show-grid-name" title="${show.name}">${show.name}</div>
+                                    <div class="show-grid-stats">已观看 ${watchStats.totalWatches} 次</div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+        
+        // 显示剧目详情模态框
+        function showShowDetailModal(showId) {
+            const show = showsInfo.find(s => s.id === showId);
+            if (!show) return;
+            
+            // 计算解锁进度（按角色数量计算）
+            const unlockStats = calculateUnlockStats(show);
+            const unlockPercentage = unlockStats.total > 0 ? (unlockStats.unlocked / unlockStats.total * 100) : 0;
+            
+            const watchStats = getShowWatchStats(show);
+            
+            document.getElementById('showDetailTitle').textContent = show.name;
+            document.getElementById('showDetailContent').innerHTML = `
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 30px;">
+                    ${show.poster ? `
+                        <div>
+                            <img src="${show.poster}" class="show-poster" alt="${show.name}">
+                        </div>
+                    ` : ''}
+                    <div style="flex: 1; min-width: 300px;">
+                        ${show.venue ? `<p style="color: var(--text-secondary); font-size: 1.1em; margin-bottom: 10px;">📍 ${show.venue}</p>` : ''}
+                        <p style="color: var(--text-secondary); font-size: 1.1em; margin-bottom: 20px;">
+                            已观看 <strong style="color: var(--primary); font-size: 1.3em;">${watchStats.totalWatches}</strong> 次
+                        </p>
+                        
+                        <div class="unlock-progress">
+                            <span>卡司解锁</span>
+                            <div class="unlock-progress-bar">
+                                <div class="unlock-progress-fill" style="width: ${unlockPercentage}%"></div>
+                            </div>
+                            <span>${unlockStats.unlocked} / ${unlockStats.total}</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button class="btn btn-small btn-secondary" onclick="closeShowDetailModal(); editShowInfo(${show.id})">编辑</button>
+                            <button class="btn btn-small" onclick="if(confirm('确定删除？')){deleteShowInfo(${show.id}); closeShowDetailModal();}" style="background: #dc3545;">删除</button>
+                        </div>
+                    </div>
+                </div>
+                
+                ${show.roles && show.roles.length > 0 ? `
+                    <div>
+                        <h3 class="card-title">
+                            角色与卡司
+                            <span style="font-size: 0.7em; color: var(--text-secondary); margin-left: 10px;">💡 点击卡司框可调整观看次数</span>
+                        </h3>
+                        ${show.roles.map(role => {
+                            const roleCasts = role.casts || [];
+                            return `
+                                <div class="role-section">
+                                    <div class="role-title">${role.roleName}</div>
+                                    <div class="cast-list">
+                                        ${roleCasts.map(castName => {
+                                            const castStats = getCastWatchStatsWithManual(show.name, role.roleName, castName);
+                                            return `
+                                                <div class="cast-badge ${castStats.count > 0 ? 'watched' : ''}" 
+                                                     onclick="editCastWatchCount('${show.name.replace(/'/g, "\\'")}', '${role.roleName.replace(/'/g, "\\'")}', '${castName.replace(/'/g, "\\'")}', ${show.id})"
+                                                     style="cursor: pointer;"
+                                                     title="点击调整观看次数">
+                                                    ${castName}
+                                                    ${castStats.count > 0 ? `<span class="cast-badge-count">${castStats.count}</span>` : ''}
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                ` : '<p style="color: var(--text-secondary); margin-top: 20px;">暂无角色信息</p>'}
+            `;
+            
+            document.getElementById('showDetailModal').classList.add('active');
+        }
+        
+        // 关闭剧目详情模态框
+        function closeShowDetailModal() {
+            document.getElementById('showDetailModal').classList.remove('active');
+        }
+        
+        // 计算解锁统计（按角色计算，一个演员演多个角色算多次）
+        function calculateUnlockStats(show) {
+            if (!show.roles || show.roles.length === 0) {
+                return { unlocked: 0, total: 0 };
+            }
+            
+            let total = 0;
+            let unlocked = 0;
+            
+            show.roles.forEach(role => {
+                if (role.casts && role.casts.length > 0) {
+                    role.casts.forEach(castName => {
+                        total++; // 每个角色-演员组合算一个
+                        const stats = getCastWatchStatsWithManual(show.name, role.roleName, castName);
+                        if (stats.count > 0) {
+                            unlocked++;
+                        }
+                    });
+                }
+            });
+            
+            return { unlocked, total };
+        }
+        
+        // 获取剧目观看统计
+        function getShowWatchStats(show) {
+            const watches = records.filter(r => r.showName === show.name);
+            return {
+                totalWatches: watches.length
+            };
+        }
+        
+        // 获取卡司观看统计（在特定剧目的特定角色中）
+        function getCastWatchStats(showName, roleName, castName) {
+            const watches = records.filter(r => {
+                if (r.showName !== showName) return false;
+                
+                // 优先检查castWithRoles（带角色信息的记录）
+                if (r.castWithRoles && r.castWithRoles.length > 0) {
+                    const key = `${roleName}|||${castName}`;
+                    return r.castWithRoles.some(item => item.key === key);
+                }
+                
+                // 如果没有castWithRoles，回退到检查cast列表（旧记录兼容）
+                return r.cast && r.cast.some(c => c.trim() === castName.trim());
+            });
+            
+            return {
+                count: watches.length
+            };
+        }
+        
+        // 获取卡司观看统计（包含手动调整）
+        function getCastWatchStatsWithManual(showName, roleName, castName) {
+            const key = `${showName}|||${roleName}|||${castName}`;
+            
+            // 如果有手动设置，使用手动值
+            if (manualWatchCounts[key] !== undefined) {
+                return {
+                    count: manualWatchCounts[key]
+                };
+            }
+            
+            // 否则使用自动统计
+            return getCastWatchStats(showName, roleName, castName);
+        }
+        
+        // 保存手动观看次数
+        function saveManualWatchCounts() {
+            localStorage.setItem('manualWatchCounts', JSON.stringify(manualWatchCounts));
+            // 同步到GitHub
+            syncToGitHub().catch(err => console.error('同步失败:', err));
+        }
+        
+        // 编辑卡司观看次数
+        function editCastWatchCount(showName, roleName, castName, showId) {
+            const currentStats = getCastWatchStatsWithManual(showName, roleName, castName);
+            const autoStats = getCastWatchStats(showName, roleName, castName);
+            
+            const message = `调整「${castName}」在「${roleName}」中的观看次数：\n\n` +
+                          `当前显示：${currentStats.count} 次\n` +
+                          `记录统计：${autoStats.count} 次\n\n` +
+                          `请输入新的次数（输入 -1 恢复自动统计）：`;
+            
+            const input = prompt(message, currentStats.count);
+            
+            if (input === null) return; // 取消
+            
+            const newCount = parseInt(input);
+            
+            if (isNaN(newCount)) {
+                alert('请输入有效的数字');
+                return;
+            }
+            
+            const key = `${showName}|||${roleName}|||${castName}`;
+            
+            if (newCount === -1) {
+                // 删除手动设置，恢复自动统计
+                delete manualWatchCounts[key];
+                alert(`已恢复为自动统计（${autoStats.count} 次）`);
+            } else if (newCount < 0) {
+                alert('次数不能为负数');
+                return;
+            } else {
+                // 设置手动次数
+                manualWatchCounts[key] = newCount;
+                alert(`已设置为 ${newCount} 次`);
+            }
+            
+            saveManualWatchCounts();
+            
+            // 刷新显示
+            showShowDetailModal(showId);
+        }
+        
+        // 显示添加剧目信息模态框
+        function showAddShowInfoModal() {
+            document.getElementById('showInfoModalTitle').textContent = '添加剧目信息';
+            document.getElementById('showInfoForm').reset();
+            document.getElementById('showInfoId').value = '';
+            document.getElementById('posterPreview').innerHTML = '';
+            document.getElementById('rolesContainer').innerHTML = '';
+            tempPoster = null;
+            
+            // 添加一个默认角色输入
+            addRoleInput();
+            
+            document.getElementById('showInfoModal').classList.add('active');
+        }
+        
+        // 添加角色输入组
+        let roleInputCounter = 0;
+        function addRoleInput() {
+            const container = document.getElementById('rolesContainer');
+            const roleId = roleInputCounter++;
+            
+            const roleDiv = document.createElement('div');
+            roleDiv.className = 'role-input-group';
+            roleDiv.id = `role-${roleId}`;
+            roleDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <input type="text" placeholder="角色名称（例如：Elphaba）" 
+                           class="role-name-input" style="flex: 1; margin-right: 10px;">
+                    <button type="button" class="btn-remove" onclick="removeRole(${roleId})">删除角色</button>
+                </div>
+                
+                <div class="batch-parse-section" style="margin-bottom: 10px;">
+                    <label style="font-weight: 600; margin-bottom: 5px; display: block; font-size: 0.9em;">批量添加演员</label>
+                    <textarea id="role-batch-${roleId}" class="batch-parse-textarea" 
+                              style="min-height: 60px; font-size: 0.9em;"
+                              placeholder="粘贴演员列表&#10;例如：张三&#10;李四&#10;王五"></textarea>
+                    <button type="button" class="btn btn-secondary btn-add-small" 
+                            onclick="parseBatchCastsForRole(${roleId})" 
+                            style="margin-top: 5px;">
+                        ✓ 识别并添加
+                    </button>
+                </div>
+                
+                <div class="casts-container" id="casts-${roleId}">
+                    <div class="cast-input-row">
+                        <input type="text" placeholder="演员名字" class="cast-input">
+                        <button type="button" class="btn btn-secondary btn-add-small" onclick="addCastInput(${roleId})">+ 演员</button>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(roleDiv);
+        }
+        
+        // 添加演员输入
+        function addCastInput(roleId) {
+            const container = document.getElementById(`casts-${roleId}`);
+            const inputRow = document.createElement('div');
+            inputRow.className = 'cast-input-row';
+            inputRow.innerHTML = `
+                <input type="text" placeholder="演员名字" class="cast-input">
+                <button type="button" class="btn-remove" onclick="this.parentElement.remove()">删除</button>
+            `;
+            container.appendChild(inputRow);
+        }
+        
+        
+        // 批量识别角色的卡司
+        function parseBatchCastsForRole(roleId) {
+            const textarea = document.getElementById(`role-batch-${roleId}`);
+            const container = document.getElementById(`casts-${roleId}`);
+            
+            if (!textarea || !container) return;
+            
+            const text = textarea.value.trim();
+            if (!text) {
+                alert('请先输入演员列表');
+                return;
+            }
+            
+            // 解析演员列表
+            const casts = parseCastList(text);
+            
+            if (casts.length === 0) {
+                alert('未识别到演员名字');
+                return;
+            }
+            
+            // 清空现有输入框
+            container.innerHTML = '';
+            
+            // 为每个演员创建输入框
+            casts.forEach((castName, index) => {
+                const inputRow = document.createElement('div');
+                inputRow.className = 'cast-input-row';
+                
+                if (index === 0) {
+                    inputRow.innerHTML = `
+                        <input type="text" placeholder="演员名字" class="cast-input" value="${castName}">
+                        <button type="button" class="btn btn-secondary btn-add-small" onclick="addCastInput(${roleId})">+ 演员</button>
+                    `;
+                } else {
+                    inputRow.innerHTML = `
+                        <input type="text" placeholder="演员名字" class="cast-input" value="${castName}">
+                        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">删除</button>
+                    `;
+                }
+                
+                container.appendChild(inputRow);
+            });
+            
+            // 清空文本框
+            textarea.value = '';
+            
+            alert(`成功识别 ${casts.length} 位演员！`);
+        }
+        
+        // 删除角色
+        function removeRole(roleId) {
+            const roleDiv = document.getElementById(`role-${roleId}`);
+            if (roleDiv) {
+                roleDiv.remove();
+            }
+        }
+        
+        // 压缩图片
+        function compressImage(base64Str, maxWidth = 800, quality = 0.7) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    // 如果图片宽度超过maxWidth，按比例缩放
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // 转换为base64，使用指定的质量
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+                    
+                    console.log('图片压缩:', 
+                        '原始大小:', Math.round(base64Str.length / 1024), 'KB',
+                        '→ 压缩后:', Math.round(compressedBase64.length / 1024), 'KB'
+                    );
+                    
+                    resolve(compressedBase64);
+                };
+                img.onerror = reject;
+                img.src = base64Str;
+            });
+        }
+        
+        // 处理海报上传
+        document.addEventListener('DOMContentLoaded', function() {
+            const posterInput = document.getElementById('showInfoPoster');
+            if (posterInput) {
+                posterInput.addEventListener('change', async function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = async function(event) {
+                            const originalBase64 = event.target.result;
+                            
+                            // 压缩图片
+                            try {
+                                tempPoster = await compressImage(originalBase64, 800, 0.7);
+                                document.getElementById('posterPreview').innerHTML = `
+                                    <img src="${tempPoster}" style="max-width: 200px; border-radius: 8px;">
+                                    <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 5px;">
+                                        已压缩: ${Math.round(tempPoster.length / 1024)} KB
+                                    </p>
+                                `;
+                            } catch (error) {
+                                console.error('图片压缩失败:', error);
+                                // 压缩失败则使用原图
+                                tempPoster = originalBase64;
+                                document.getElementById('posterPreview').innerHTML = `
+                                    <img src="${tempPoster}" style="max-width: 200px; border-radius: 8px;">
+                                `;
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+            
+            // 剧目信息表单提交
+            const showInfoForm = document.getElementById('showInfoForm');
+            if (showInfoForm) {
+                showInfoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    saveShowInfo();
+                });
+            }
+        });
+        
+        // 保存剧目信息
+        function saveShowInfo() {
+            const id = document.getElementById('showInfoId').value;
+            const name = document.getElementById('showInfoName').value.trim();
+            const venue = document.getElementById('showInfoVenue').value.trim();
+            
+            if (!name) {
+                alert('请输入剧目名称');
+                return;
+            }
+            
+            // 收集角色和卡司信息
+            const roles = [];
+            const roleInputs = document.querySelectorAll('.role-input-group');
+            
+            roleInputs.forEach(roleDiv => {
+                const roleNameInput = roleDiv.querySelector('.role-name-input');
+                const roleName = roleNameInput ? roleNameInput.value.trim() : '';
+                
+                if (roleName) {
+                    const castInputs = roleDiv.querySelectorAll('.cast-input');
+                    const casts = Array.from(castInputs)
+                        .map(input => input.value.trim())
+                        .filter(cast => cast);
+                    
+                    if (casts.length > 0) {
+                        roles.push({
+                            roleName: roleName,
+                            casts: casts
+                        });
+                    }
+                }
+            });
+            
+            const showInfo = {
+                id: id ? parseInt(id) : Date.now(),
+                name: name,
+                venue: venue,
+                poster: tempPoster,
+                roles: roles,
+                createdAt: new Date().toISOString()
+            };
+            
+            if (id) {
+                // 更新现有剧目
+                const index = showsInfo.findIndex(s => s.id === parseInt(id));
+                if (index !== -1) {
+                    showsInfo[index] = showInfo;
+                }
+            } else {
+                // 添加新剧目
+                showsInfo.push(showInfo);
+            }
+            
+            saveShowsInfo();
+            closeShowInfoModal();
+            renderShowInfoList();
+            alert('剧目信息保存成功！');
+        }
+        
+        // 编辑剧目信息
+        function editShowInfo(id) {
+            const show = showsInfo.find(s => s.id === id);
+            if (!show) return;
+            
+            document.getElementById('showInfoModalTitle').textContent = '编辑剧目信息';
+            document.getElementById('showInfoId').value = show.id;
+            document.getElementById('showInfoName').value = show.name;
+            document.getElementById('showInfoVenue').value = show.venue || '';
+            
+            // 显示海报
+            if (show.poster) {
+                tempPoster = show.poster;
+                document.getElementById('posterPreview').innerHTML = `
+                    <img src="${show.poster}" style="max-width: 200px; border-radius: 8px;">
+                `;
+            } else {
+                tempPoster = null;
+                document.getElementById('posterPreview').innerHTML = '';
+            }
+            
+            // 加载角色和卡司
+            const rolesContainer = document.getElementById('rolesContainer');
+            rolesContainer.innerHTML = '';
+            roleInputCounter = 0;
+            
+            if (show.roles && show.roles.length > 0) {
+                show.roles.forEach(role => {
+                    const roleId = roleInputCounter++;
+                    const roleDiv = document.createElement('div');
+                    roleDiv.className = 'role-input-group';
+                    roleDiv.id = `role-${roleId}`;
+                    
+                    const castsHtml = role.casts.map((cast, idx) => `
+                        <div class="cast-input-row">
+                            <input type="text" placeholder="演员名字" class="cast-input" value="${cast}">
+                            ${idx === 0 ? 
+                                `<button type="button" class="btn btn-secondary btn-add-small" onclick="addCastInput(${roleId})">+ 演员</button>` :
+                                `<button type="button" class="btn-remove" onclick="this.parentElement.remove()">删除</button>`
+                            }
+                        </div>
+                    `).join('');
+                    
+                    roleDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <input type="text" placeholder="角色名称" value="${role.roleName}"
+                                   class="role-name-input" style="flex: 1; margin-right: 10px;">
+                            <button type="button" class="btn-remove" onclick="removeRole(${roleId})">删除角色</button>
+                        </div>
+                        
+                        <div class="batch-parse-section" style="margin-bottom: 10px;">
+                            <label style="font-weight: 600; margin-bottom: 5px; display: block; font-size: 0.9em;">批量添加演员</label>
+                            <textarea id="role-batch-${roleId}" class="batch-parse-textarea" 
+                                      style="min-height: 60px; font-size: 0.9em;"
+                                      placeholder="粘贴演员列表&#10;例如：张三&#10;李四&#10;王五"></textarea>
+                            <button type="button" class="btn btn-secondary btn-add-small" 
+                                    onclick="parseBatchCastsForRole(${roleId})" 
+                                    style="margin-top: 5px;">
+                                ✓ 识别并添加
+                            </button>
+                        </div>
+                        
+                        <div class="casts-container" id="casts-${roleId}">
+                            ${castsHtml}
+                        </div>
+                    `;
+                    
+                    rolesContainer.appendChild(roleDiv);
+                });
+            } else {
+                addRoleInput();
+            }
+            
+            document.getElementById('showInfoModal').classList.add('active');
+        }
+        
+        // 删除剧目信息
+        function deleteShowInfo(id) {
+            if (confirm('确定要删除这个剧目信息吗？')) {
+                showsInfo = showsInfo.filter(s => s.id !== id);
+                saveShowsInfo();
+                renderShowInfoList(); // 删除后返回列表视图
+            }
+        }
+        
+        // 关闭剧目信息模态框
+        function closeShowInfoModal() {
+            document.getElementById('showInfoModal').classList.remove('active');
+            tempPoster = null;
+        }
+        
+        // 清空所有数据
+        function clearAllData() {
+            if (records.length === 0) {
+                alert('当前没有任何数据');
+                return;
+            }
+            
+            const confirmation = confirm(
+                `警告：此操作将删除所有 ${records.length} 条记录！\n\n` +
+                `此操作无法撤销，建议先导出备份。\n\n` +
+                `确定要继续吗？`
+            );
+            
+            if (!confirmation) return;
+            
+            const finalConfirmation = confirm('最后确认：真的要删除所有数据吗？');
+            
+            if (finalConfirmation) {
+                records = [];
+                saveRecords();
+                loadRecords();
+                alert('所有数据已清空');
+            }
+        }
+
+        // ============ GitHub 同步功能 ============
+        
+        // 加载GitHub配置
+        function loadGitHubConfig() {
+            const savedToken = localStorage.getItem('githubToken');
+            if (savedToken) {
+                GITHUB_CONFIG.token = savedToken;
+                updateSyncStatus();
+            }
+        }
+        
+        // 保存GitHub Token
+        function saveGitHubToken() {
+            const token = document.getElementById('githubToken').value.trim();
+            
+            if (!token) {
+                alert('请输入GitHub Token');
+                return;
+            }
+            
+            if (!token.startsWith('ghp_')) {
+                alert('Token格式不正确，应该以 ghp_ 开头');
+                return;
+            }
+            
+            GITHUB_CONFIG.token = token;
+            localStorage.setItem('githubToken', token);
+            
+            // 测试连接
+            testGitHubConnection().then(success => {
+                if (success) {
+                    alert('Token保存成功！GitHub同步已启用\n\n现在你的数据会自动同步到GitHub');
+                    updateSyncStatus();
+                }
+            });
+        }
+        
+        // 测试GitHub连接
+        async function testGitHubConnection() {
+            if (!GITHUB_CONFIG.token) {
+                alert('请先配置GitHub Token');
+                return false;
+            }
+            
+            updateSyncStatus('测试中...');
+            
+            try {
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}`,
+                    {
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+                
+                if (response.ok) {
+                    updateSyncStatus('已启用 ✓', '连接正常，自动同步已开启');
+                    alert('连接成功！\n可以正常访问你的GitHub仓库');
+                    return true;
+                } else if (response.status === 401) {
+                    updateSyncStatus('未启用', 'Token无效，请检查');
+                    alert('Token无效！\n请检查Token是否正确，或是否已过期');
+                    return false;
+                } else if (response.status === 404) {
+                    updateSyncStatus('未启用', '仓库不存在');
+                    alert('找不到仓库！\n请检查用户名和仓库名是否正确');
+                    return false;
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.error('测试连接失败:', error);
+                updateSyncStatus('未启用', '连接失败: ' + error.message);
+                alert('连接失败：' + error.message + '\n\n请检查网络连接');
+                return false;
+            }
+        }
+        
+        // 同步数据到GitHub
+        async function syncToGitHub() {
+            console.log('=== 开始同步到GitHub ===');
+            console.log('Token配置:', GITHUB_CONFIG.token ? '已配置' : '未配置');
+            console.log('仓库:', `${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}`);
+            
+            if (!GITHUB_CONFIG.token) {
+                console.log('未配置GitHub Token，跳过同步');
+                return;
+            }
+            
+            if (isSyncing) {
+                console.log('正在同步中，跳过本次同步');
+                return;
+            }
+            
+            isSyncing = true;
+            updateSyncStatus('同步中...');
+            
+            try {
+                // 1. 获取当前文件的SHA（如果存在）
+                let sha = null;
+                try {
+                    const getResponse = await fetch(
+                        `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.dataFile}`,
+                        {
+                            headers: {
+                                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        }
+                    );
+                    
+                    if (getResponse.ok) {
+                        const data = await getResponse.json();
+                        sha = data.sha;
+                    }
+                } catch (e) {
+                    console.log('文件不存在，将创建新文件');
+                }
+                
+                // 2. 上传数据（包含records、showsInfo和manualWatchCounts）
+                const timestamp = new Date().toISOString();
+                const allData = {
+                    records: records,
+                    showsInfo: showsInfo,
+                    manualWatchCounts: manualWatchCounts,
+                    lastUpdate: timestamp
+                };
+                
+                console.log('准备同步数据:', {
+                    records: records.length,
+                    showsInfo: showsInfo.length,
+                    manualWatchCounts: Object.keys(manualWatchCounts).length
+                });
+                
+                const jsonString = JSON.stringify(allData, null, 2);
+                const jsonSize = jsonString.length;
+                const jsonSizeMB = (jsonSize / 1024 / 1024).toFixed(2);
+                console.log('JSON字符串大小:', jsonSize, '字符 (', jsonSizeMB, 'MB)');
+                
+                // GitHub API限制单个文件不超过100MB，但建议保持在1MB以下
+                if (jsonSize > 1024 * 1024) {
+                    console.warn('警告：数据量较大，可能影响同步速度');
+                }
+                if (jsonSize > 10 * 1024 * 1024) {
+                    throw new Error(`数据过大(${jsonSizeMB}MB)，GitHub API限制为100MB。请考虑减少图片数量或压缩图片。`);
+                }
+                
+                // Base64编码
+                let content;
+                try {
+                    content = btoa(unescape(encodeURIComponent(jsonString)));
+                } catch (e) {
+                    console.error('Base64编码失败:', e);
+                    throw new Error('数据编码失败: ' + e.message);
+                }
+                
+                const updateData = {
+                    message: `更新观演记录 - ${new Date().toLocaleString('zh-CN')}`,
+                    content: content,
+                    branch: GITHUB_CONFIG.branch
+                };
+                
+                if (sha) {
+                    updateData.sha = sha;
+                }
+                
+                const putResponse = await fetch(
+                    `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.dataFile}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(updateData)
+                    }
+                );
+                
+                if (!putResponse.ok) {
+                    const errorBody = await putResponse.text();
+                    console.error('GitHub API错误响应:', errorBody);
+                    throw new Error(`上传失败 (${putResponse.status}): ${errorBody}`);
+                }
+                
+                console.log('✓ 数据已成功同步到GitHub');
+                
+                // 保存本地同步时间戳
+                localStorage.setItem('lastSyncTime', timestamp);
+                
+                console.log('=== 同步完成 ===');
+                updateSyncStatus('已启用 ✓', `最后同步: ${new Date().toLocaleTimeString('zh-CN')}`);
+                
+            } catch (error) {
+                console.error('=== 同步到GitHub失败 ===');
+                console.error('错误类型:', error.name);
+                console.error('错误信息:', error.message);
+                console.error('完整错误:', error);
+                
+                let errorMsg = '同步失败';
+                if (error.message.includes('404')) {
+                    errorMsg = '仓库不存在或无权访问';
+                } else if (error.message.includes('401')) {
+                    errorMsg = 'Token无效或已过期';
+                } else if (error.message.includes('403')) {
+                    errorMsg = 'Token权限不足（需要repo权限）';
+                } else if (error.message.includes('数据过大')) {
+                    errorMsg = '数据过大';
+                }
+                
+                updateSyncStatus(errorMsg, error.message);
+                console.log('继续使用本地数据');
+                console.log('=== 同步结束（失败）===');
+            } finally {
+                isSyncing = false;
+            }
+        }
+        
+        // 从GitHub加载数据
+        async function syncFromGitHub() {
+            if (!GITHUB_CONFIG.token) {
+                console.log('未配置GitHub Token，使用本地数据');
+                return;
+            }
+            
+            try {
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.dataFile}`,
+                    {
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    console.log('GitHub API响应类型:', data.type);
+                    console.log('GitHub API响应大小:', data.size);
+                    
+                    // 检查是否是文件（而不是目录）
+                    if (data.type === 'dir') {
+                        console.error('路径指向目录而非文件');
+                        throw new Error('数据文件路径错误：指向的是目录而非文件');
+                    }
+                    
+                    let content;
+                    
+                    // 如果文件太大（>1MB），GitHub API不返回content，需要用download_url
+                    if (!data.content || data.encoding === 'none') {
+                        console.log('文件较大，使用download_url下载...');
+                        
+                        if (!data.download_url) {
+                            console.error('GitHub完整响应:', JSON.stringify(data, null, 2));
+                            throw new Error('无法获取文件内容：缺少download_url');
+                        }
+                        
+                        // 通过download_url获取文件内容
+                        const downloadResponse = await fetch(data.download_url);
+                        if (!downloadResponse.ok) {
+                            throw new Error(`下载文件失败: ${downloadResponse.status}`);
+                        }
+                        content = await downloadResponse.text();
+                        console.log('文件下载完成，大小:', Math.round(content.length / 1024), 'KB');
+                    } else {
+                        // 文件较小，直接从content解码
+                        console.log('从API响应中解码content...');
+                        
+                        // 移除content中的换行符（GitHub API会在base64中插入换行）
+                        const cleanContent = data.content.replace(/\n/g, '');
+                        
+                        // 解码Base64内容
+                        try {
+                            content = decodeURIComponent(escape(atob(cleanContent)));
+                        } catch (e) {
+                            console.error('Base64解码失败:', e);
+                            throw new Error('数据解码失败，文件可能损坏');
+                        }
+                    }
+                    
+                    // 解析JSON
+                    let githubData;
+                    try {
+                        githubData = JSON.parse(content);
+                    } catch (e) {
+                        console.error('JSON解析失败:', e);
+                        console.error('内容预览:', content.substring(0, 200));
+                        throw new Error('数据格式错误，JSON解析失败');
+                    }
+                    
+                    // 兼容旧格式（只有records数组）和新格式（包含records、showsInfo、manualWatchCounts）
+                    let githubRecords, githubShowsInfo, githubManualCounts, githubLastUpdate;
+                    
+                    if (Array.isArray(githubData)) {
+                        // 旧格式：直接是records数组
+                        githubRecords = githubData;
+                        githubShowsInfo = [];
+                        githubManualCounts = {};
+                        githubLastUpdate = null;
+                    } else {
+                        // 新格式：包含多个字段的对象
+                        githubRecords = githubData.records || [];
+                        githubShowsInfo = githubData.showsInfo || [];
+                        githubManualCounts = githubData.manualWatchCounts || {};
+                        githubLastUpdate = githubData.lastUpdate;
+                    }
+                    
+                    console.log('GitHub数据:', {
+                        records: githubRecords.length,
+                        showsInfo: githubShowsInfo.length,
+                        manualCounts: Object.keys(githubManualCounts).length,
+                        lastUpdate: githubLastUpdate
+                    });
+                    
+                    // 合并数据
+                    const localRecords = JSON.parse(localStorage.getItem('musicalRecords') || '[]');
+                    const localShowsInfo = JSON.parse(localStorage.getItem('showsInfo') || '[]');
+                    const localManualCounts = JSON.parse(localStorage.getItem('manualWatchCounts') || '{}');
+                    const localLastUpdate = localStorage.getItem('lastSyncTime');
+                    
+                    console.log('本地数据:', {
+                        records: localRecords.length,
+                        showsInfo: localShowsInfo.length,
+                        manualCounts: Object.keys(localManualCounts).length,
+                        lastUpdate: localLastUpdate
+                    });
+                    
+                    // 使用时间戳比较（如果都有时间戳）
+                    let useGitHub = false;
+                    
+                    if (githubLastUpdate && localLastUpdate) {
+                        // 都有时间戳，比较时间
+                        const githubTime = new Date(githubLastUpdate).getTime();
+                        const localTime = new Date(localLastUpdate).getTime();
+                        
+                        console.log('时间戳比较:', {
+                            github: githubLastUpdate,
+                            local: localLastUpdate,
+                            githubTime: githubTime,
+                            localTime: localTime
+                        });
+                        
+                        if (githubTime > localTime) {
+                            console.log('GitHub数据更新（根据时间戳）');
+                            useGitHub = true;
+                        } else if (localTime > githubTime) {
+                            console.log('本地数据更新（根据时间戳），将同步到GitHub');
+                            records = localRecords;
+                            showsInfo = localShowsInfo;
+                            manualWatchCounts = localManualCounts;
+                            await syncToGitHub();
+                            return;
+                        } else {
+                            console.log('数据已同步（时间戳相同）');
+                            useGitHub = true; // 使用GitHub数据保持一致
+                        }
+                    } else if (githubLastUpdate && !localLastUpdate) {
+                        // 只有GitHub有时间戳，说明GitHub是新格式，优先使用
+                        console.log('GitHub有时间戳，本地无时间戳，使用GitHub数据');
+                        useGitHub = true;
+                    } else if (!githubLastUpdate && localLastUpdate) {
+                        // 只有本地有时间戳，说明本地是新格式，上传到GitHub
+                        console.log('本地有时间戳，GitHub无时间戳，上传本地数据');
+                        records = localRecords;
+                        showsInfo = localShowsInfo;
+                        manualWatchCounts = localManualCounts;
+                        await syncToGitHub();
+                        return;
+                    } else {
+                        // 都没有时间戳，使用数量比较（向后兼容）
+                        console.log('都无时间戳，使用数量比较');
+                        const githubTotal = githubRecords.length + githubShowsInfo.length;
+                        const localTotal = localRecords.length + localShowsInfo.length;
+                        
+                        console.log('数量比较:', { githubTotal, localTotal });
+                        
+                        if (githubTotal > localTotal) {
+                            console.log('GitHub数据较多（根据数量）');
+                            useGitHub = true;
+                        } else if (localTotal > githubTotal) {
+                            console.log('本地数据较多（根据数量），将同步到GitHub');
+                            records = localRecords;
+                            showsInfo = localShowsInfo;
+                            manualWatchCounts = localManualCounts;
+                            await syncToGitHub();
+                            return;
+                        } else {
+                            console.log('数量相同，使用GitHub数据');
+                            useGitHub = true;
+                        }
+                    }
+                    
+                    if (useGitHub) {
+                        records = githubRecords;
+                        showsInfo = githubShowsInfo;
+                        manualWatchCounts = githubManualCounts;
+                        
+                        localStorage.setItem('musicalRecords', JSON.stringify(records));
+                        localStorage.setItem('showsInfo', JSON.stringify(showsInfo));
+                        localStorage.setItem('manualWatchCounts', JSON.stringify(manualWatchCounts));
+                        if (githubLastUpdate) {
+                            localStorage.setItem('lastSyncTime', githubLastUpdate);
+                        }
+                        
+                        console.log('已从GitHub加载数据');
+                    }
+                    
+                    updateSyncStatus('已启用 ✓', `已加载 ${records.length} 条记录, ${showsInfo.length} 个剧目`);
+                } else if (response.status === 404) {
+                    console.log('GitHub上还没有数据文件，将上传本地数据');
+                    if (records.length > 0 || showsInfo.length > 0) {
+                        await syncToGitHub();
+                    }
+                } else {
+                    throw new Error(`加载失败: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('从GitHub加载失败:', error);
+                throw error;
+            }
+        }
+        
+        // 手动同步
+        async function manualSync() {
+            if (!GITHUB_CONFIG.token) {
+                alert('请先配置GitHub Token');
+                return;
+            }
+            
+            console.log('开始手动同步...');
+            
+            try {
+                // 先尝试从GitHub拉取
+                let pullSuccess = false;
+                try {
+                    await syncFromGitHub();
+                    pullSuccess = true;
+                    console.log('✓ 从GitHub拉取成功');
+                } catch (error) {
+                    console.log('从GitHub拉取失败（可能是第一次同步）:', error.message);
+                    // 忽略拉取失败，继续上传
+                }
+                
+                // 上传到GitHub
+                console.log('开始上传到GitHub...');
+                await syncToGitHub();
+                console.log('✓ 上传到GitHub成功');
+                
+                let message = `同步成功！\n已同步 ${records.length} 条记录, ${showsInfo.length} 个剧目`;
+                if (!pullSuccess) {
+                    message += '\n\n（这是首次同步，已将本地数据上传到GitHub）';
+                }
+                
+                alert(message);
+                loadRecords();
+                renderCalendar();
+                renderShowInfoList();
+            } catch (error) {
+                console.error('同步失败，完整错误:', error);
+                alert('同步失败：' + error.message + '\n\n详细信息请查看浏览器控制台(F12)');
+            }
+        }
+        
+        // 更新同步状态显示
+        function updateSyncStatus(status, detail) {
+            const statusText = document.getElementById('syncStatusText');
+            const statusDetail = document.getElementById('syncStatusDetail');
+            
+            if (statusText && status) {
+                statusText.textContent = status;
+            }
+            
+            if (statusDetail && detail) {
+                statusDetail.textContent = detail;
+            }
+            
+            // 根据token是否存在更新默认状态
+            if (!status && GITHUB_CONFIG.token) {
+                if (statusText) statusText.textContent = '已启用 ✓';
+                if (statusDetail) statusDetail.textContent = '自动同步已开启';
+            } else if (!status && !GITHUB_CONFIG.token) {
+                if (statusText) statusText.textContent = '未启用';
+                if (statusDetail) statusDetail.textContent = '请先配置GitHub Token';
+            }
+        }
+    </script>
+</body>
+</html>
