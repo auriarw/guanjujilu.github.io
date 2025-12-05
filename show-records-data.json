@@ -315,6 +315,39 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T08:08:58.312Z"
+    },
+    {
+      "id": 1764922873984,
+      "showName": "摇滚太白·诗与星",
+      "showType": "音乐剧",
+      "date": "2024-11-23",
+      "time": "19:30",
+      "cast": [
+        "杜钇樵",
+        "天草",
+        "王珏语涵"
+      ],
+      "castWithRoles": [
+        {
+          "key": "李月圆|||杜钇樵",
+          "roleName": "李月圆",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "辛辰|||天草",
+          "roleName": "辛辰",
+          "castName": "天草"
+        },
+        {
+          "key": "老师/月娃|||王珏语涵",
+          "roleName": "老师/月娃",
+          "castName": "王珏语涵"
+        }
+      ],
+      "seat": "B5-3",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T08:21:13.984Z"
     }
   ],
   "showsInfo": [
@@ -738,5 +771,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T08:19:29.715Z"
+  "lastUpdate": "2025-12-05T08:21:14.983Z"
 }
