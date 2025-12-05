@@ -912,6 +912,23 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:50:16.289Z"
+    },
+    {
+      "id": 1764964261897,
+      "showName": "末路狂花",
+      "showType": "音乐会",
+      "date": "2025-03-09",
+      "time": "14:00",
+      "cast": [
+        "杜钇樵",
+        "赵雨卉",
+        "胥子含"
+      ],
+      "castWithRoles": [],
+      "seat": "",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:51:01.897Z"
     }
   ],
   "showsInfo": [
@@ -1348,5 +1365,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:50:16.620Z"
+  "lastUpdate": "2025-12-05T19:51:02.454Z"
 }
