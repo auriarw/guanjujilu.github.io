@@ -240,6 +240,27 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T07:35:20.447Z"
+    },
+    {
+      "id": 1764922017032,
+      "showName": "我和刘红梅在车站",
+      "showType": "话剧",
+      "date": "2024-11-15",
+      "time": "15:00",
+      "cast": [
+        "卢佳琦"
+      ],
+      "castWithRoles": [
+        {
+          "key": "我|||卢佳琦",
+          "roleName": "我",
+          "castName": "卢佳琦"
+        }
+      ],
+      "seat": "",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T08:06:57.032Z"
     }
   ],
   "showsInfo": [
@@ -614,5 +635,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T08:05:58.723Z"
+  "lastUpdate": "2025-12-05T08:06:59.337Z"
 }
