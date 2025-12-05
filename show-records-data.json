@@ -751,6 +751,45 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:38:34.946Z"
+    },
+    {
+      "id": 1764963595755,
+      "showName": "Lizzie丽兹",
+      "showType": "音乐剧",
+      "date": "2025-02-09",
+      "time": "17:00",
+      "cast": [
+        "韩冰儿",
+        "张沁丹",
+        "杜钇樵",
+        "党韫葳"
+      ],
+      "castWithRoles": [
+        {
+          "key": "Lizzie|||韩冰儿",
+          "roleName": "Lizzie",
+          "castName": "韩冰儿"
+        },
+        {
+          "key": "Emma|||张沁丹",
+          "roleName": "Emma",
+          "castName": "张沁丹"
+        },
+        {
+          "key": "Bridget|||杜钇樵",
+          "roleName": "Bridget",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "Alice|||党韫葳",
+          "roleName": "Alice",
+          "castName": "党韫葳"
+        }
+      ],
+      "seat": "A4-18",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:39:55.755Z"
     }
   ],
   "showsInfo": [
@@ -1174,5 +1213,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:38:35.876Z"
+  "lastUpdate": "2025-12-05T19:39:56.507Z"
 }
