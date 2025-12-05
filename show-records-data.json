@@ -480,6 +480,39 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:12:23.338Z"
+    },
+    {
+      "id": 1764961982801,
+      "showName": "摇滚太白·诗与星",
+      "showType": "音乐剧",
+      "date": "2025-01-23",
+      "time": "19:30",
+      "cast": [
+        "杜钇樵",
+        "左一平",
+        "王珏语涵"
+      ],
+      "castWithRoles": [
+        {
+          "key": "李月圆|||杜钇樵",
+          "roleName": "李月圆",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "辛辰|||左一平",
+          "roleName": "辛辰",
+          "castName": "左一平"
+        },
+        {
+          "key": "老师/月娃|||王珏语涵",
+          "roleName": "老师/月娃",
+          "castName": "王珏语涵"
+        }
+      ],
+      "seat": "A1-2",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:13:02.801Z"
     }
   ],
   "showsInfo": [
@@ -903,5 +936,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:12:23.888Z"
+  "lastUpdate": "2025-12-05T19:13:03.244Z"
 }
