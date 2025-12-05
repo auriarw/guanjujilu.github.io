@@ -45,6 +45,21 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T05:33:43.860Z"
+    },
+    {
+      "id": 1764917144319,
+      "showName": "连璧",
+      "showType": "音乐剧",
+      "date": "2025-04-25",
+      "time": "19:30",
+      "cast": [
+        "王珏语涵",
+        "左一平"
+      ],
+      "seat": "1-2-17",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T06:45:44.319Z"
     }
   ],
   "showsInfo": [
@@ -210,5 +225,5 @@
     }
   ],
   "manualWatchCounts": {},
-  "lastUpdate": "2025-12-05T06:42:41.055Z"
+  "lastUpdate": "2025-12-05T06:45:46.040Z"
 }
