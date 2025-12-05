@@ -60,6 +60,45 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T06:45:44.319Z"
+    },
+    {
+      "id": 1764919845022,
+      "showName": "Lizzie丽兹",
+      "showType": "音乐剧",
+      "date": "2024-09-21",
+      "time": "17:00",
+      "cast": [
+        "王洁璐",
+        "郑涵一",
+        "杜钇樵",
+        "胥子含"
+      ],
+      "castWithRoles": [
+        {
+          "key": "Lizzie|||王洁璐",
+          "roleName": "Lizzie",
+          "castName": "王洁璐"
+        },
+        {
+          "key": "Emma|||郑涵一",
+          "roleName": "Emma",
+          "castName": "郑涵一"
+        },
+        {
+          "key": "Bridget|||杜钇樵",
+          "roleName": "Bridget",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "Alice|||胥子含",
+          "roleName": "Alice",
+          "castName": "胥子含"
+        }
+      ],
+      "seat": "",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T07:30:45.022Z"
     }
   ],
   "showsInfo": [
@@ -227,5 +266,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T06:55:34.204Z"
+  "lastUpdate": "2025-12-05T07:30:46.409Z"
 }
