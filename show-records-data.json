@@ -603,6 +603,19 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:17:05.389Z"
+    },
+    {
+      "id": 1764962834377,
+      "showName": "五女拜寿",
+      "showType": "越剧",
+      "date": "2024-12-08",
+      "time": "19:30",
+      "cast": [],
+      "castWithRoles": [],
+      "seat": "1-4-17",
+      "notes": "浙音戏剧系越剧演员211班毕业大戏",
+      "images": [],
+      "createdAt": "2025-12-05T19:27:14.377Z"
     }
   ],
   "showsInfo": [
@@ -1026,5 +1039,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:17:05.924Z"
+  "lastUpdate": "2025-12-05T19:27:14.825Z"
 }
