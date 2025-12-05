@@ -381,6 +381,39 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T19:07:43.611Z"
+    },
+    {
+      "id": 1764961818396,
+      "showName": "摇滚太白·诗与星",
+      "showType": "音乐剧",
+      "date": "2025-01-01",
+      "time": "14:30",
+      "cast": [
+        "孙乐仟",
+        "陈玉婷",
+        "王珏语涵"
+      ],
+      "castWithRoles": [
+        {
+          "key": "李月圆|||孙乐仟",
+          "roleName": "李月圆",
+          "castName": "孙乐仟"
+        },
+        {
+          "key": "辛辰|||陈玉婷",
+          "roleName": "辛辰",
+          "castName": "陈玉婷"
+        },
+        {
+          "key": "老师/月娃|||王珏语涵",
+          "roleName": "老师/月娃",
+          "castName": "王珏语涵"
+        }
+      ],
+      "seat": "A1-4",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:10:18.396Z"
     }
   ],
   "showsInfo": [
@@ -804,5 +837,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T19:07:44.707Z"
+  "lastUpdate": "2025-12-05T19:10:19.572Z"
 }
