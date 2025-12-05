@@ -288,6 +288,33 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T08:07:58.548Z"
+    },
+    {
+      "id": 1764922138312,
+      "showName": "疯子与赞美诗",
+      "showType": "音乐剧",
+      "date": "2024-11-23",
+      "time": "14:30",
+      "cast": [
+        "张沁丹",
+        "左一平"
+      ],
+      "castWithRoles": [
+        {
+          "key": "疯子|||张沁丹",
+          "roleName": "疯子",
+          "castName": "张沁丹"
+        },
+        {
+          "key": "李默|||左一平",
+          "roleName": "李默",
+          "castName": "左一平"
+        }
+      ],
+      "seat": "C1-8",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T08:08:58.312Z"
     }
   ],
   "showsInfo": [
@@ -662,5 +689,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T08:07:59.476Z"
+  "lastUpdate": "2025-12-05T08:08:59.081Z"
 }
