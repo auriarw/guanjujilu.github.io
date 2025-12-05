@@ -348,6 +348,39 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-05T08:21:13.984Z"
+    },
+    {
+      "id": 1764961663611,
+      "showName": "摇滚太白·诗与星",
+      "showType": "音乐剧",
+      "date": "2024-12-31",
+      "time": "19:30",
+      "cast": [
+        "左一平",
+        "张沁丹",
+        "钟嘉媚"
+      ],
+      "castWithRoles": [
+        {
+          "key": "辛辰|||左一平",
+          "roleName": "辛辰",
+          "castName": "左一平"
+        },
+        {
+          "key": "李月圆|||张沁丹",
+          "roleName": "李月圆",
+          "castName": "张沁丹"
+        },
+        {
+          "key": "老师/月娃|||钟嘉媚",
+          "roleName": "老师/月娃",
+          "castName": "钟嘉媚"
+        }
+      ],
+      "seat": "A3-8",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-05T19:07:43.611Z"
     }
   ],
   "showsInfo": [
@@ -771,5 +804,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-05T08:21:14.983Z"
+  "lastUpdate": "2025-12-05T19:07:44.707Z"
 }
