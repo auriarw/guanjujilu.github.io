@@ -1050,6 +1050,45 @@
       "notes": "萱斧头位互动挑下巴啊啊啊啊啊",
       "images": [],
       "createdAt": "2025-12-06T07:16:01.713Z"
+    },
+    {
+      "id": 1765005411268,
+      "showName": "Lizzie丽兹",
+      "showType": "音乐剧",
+      "date": "2025-04-12",
+      "time": "17:00",
+      "cast": [
+        "韩冰儿",
+        "马小乔",
+        "叶嘉雯",
+        "胥子含"
+      ],
+      "castWithRoles": [
+        {
+          "key": "Lizzie|||韩冰儿",
+          "roleName": "Lizzie",
+          "castName": "韩冰儿"
+        },
+        {
+          "key": "Emma|||马小乔",
+          "roleName": "Emma",
+          "castName": "马小乔"
+        },
+        {
+          "key": "Bridget|||叶嘉雯",
+          "roleName": "Bridget",
+          "castName": "叶嘉雯"
+        },
+        {
+          "key": "Alice|||胥子含",
+          "roleName": "Alice",
+          "castName": "胥子含"
+        }
+      ],
+      "seat": "A1-2",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-06T07:16:51.268Z"
     }
   ],
   "showsInfo": [
@@ -1584,5 +1623,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:16:02.447Z"
+  "lastUpdate": "2025-12-06T07:16:51.732Z"
 }
