@@ -998,6 +998,19 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:10:10.356Z"
+    },
+    {
+      "id": 1765005282352,
+      "showName": "伤心咖啡馆之歌",
+      "showType": "话剧",
+      "date": "2026-03-29",
+      "time": "15:00",
+      "cast": [],
+      "castWithRoles": [],
+      "seat": "C5-8",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-06T07:14:42.352Z"
     }
   ],
   "showsInfo": [
@@ -1532,5 +1545,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:11:15.731Z"
+  "lastUpdate": "2025-12-06T07:14:42.785Z"
 }
