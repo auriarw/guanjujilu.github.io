@@ -947,6 +947,57 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:01:44.130Z"
+    },
+    {
+      "id": 1765005010356,
+      "showName": "茶无此人",
+      "showType": "音乐剧",
+      "date": "2025-03-26",
+      "time": "19:30",
+      "cast": [
+        "赵辰睿",
+        "陈韬",
+        "张梦嫣",
+        "安吉儿",
+        "陈卓",
+        "龚泽镪"
+      ],
+      "castWithRoles": [
+        {
+          "key": "石头|||赵辰睿",
+          "roleName": "石头",
+          "castName": "赵辰睿"
+        },
+        {
+          "key": "吴名士|||陈韬",
+          "roleName": "吴名士",
+          "castName": "陈韬"
+        },
+        {
+          "key": "洪瑛|||张梦嫣",
+          "roleName": "洪瑛",
+          "castName": "张梦嫣"
+        },
+        {
+          "key": "江鱼儿|||安吉儿",
+          "roleName": "江鱼儿",
+          "castName": "安吉儿"
+        },
+        {
+          "key": "黄九良|||陈卓",
+          "roleName": "黄九良",
+          "castName": "陈卓"
+        },
+        {
+          "key": "范泰|||龚泽镪",
+          "roleName": "范泰",
+          "castName": "龚泽镪"
+        }
+      ],
+      "seat": "服化2-10",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-06T07:10:10.356Z"
     }
   ],
   "showsInfo": [
@@ -1472,5 +1523,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:08:54.177Z"
+  "lastUpdate": "2025-12-06T07:10:10.671Z"
 }
