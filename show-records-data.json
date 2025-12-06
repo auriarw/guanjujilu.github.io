@@ -1089,6 +1089,51 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:16:51.268Z"
+    },
+    {
+      "id": 1765005466265,
+      "showName": "她对此感到厌烦",
+      "showType": "音乐剧",
+      "date": "2025-04-20",
+      "time": "14:30",
+      "cast": [
+        "杜钇樵",
+        "张沁丹",
+        "胥子含",
+        "王竞琦",
+        "蒋依敏"
+      ],
+      "castWithRoles": [
+        {
+          "key": "莉莉丝|||杜钇樵",
+          "roleName": "莉莉丝",
+          "castName": "杜钇樵"
+        },
+        {
+          "key": "辛西娅|||张沁丹",
+          "roleName": "辛西娅",
+          "castName": "张沁丹"
+        },
+        {
+          "key": "多琳|||胥子含",
+          "roleName": "多琳",
+          "castName": "胥子含"
+        },
+        {
+          "key": "罗纳德|||王竞琦",
+          "roleName": "罗纳德",
+          "castName": "王竞琦"
+        },
+        {
+          "key": "国王|||蒋依敏",
+          "roleName": "国王",
+          "castName": "蒋依敏"
+        }
+      ],
+      "seat": "女神1-5",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-06T07:17:46.266Z"
     }
   ],
   "showsInfo": [
@@ -1623,5 +1668,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:16:51.732Z"
+  "lastUpdate": "2025-12-06T07:17:46.714Z"
 }
