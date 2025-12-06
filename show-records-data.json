@@ -1011,6 +1011,45 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:14:42.352Z"
+    },
+    {
+      "id": 1765005361713,
+      "showName": "Lizzie丽兹",
+      "showType": "音乐剧",
+      "date": "2025-04-11",
+      "time": "20:00",
+      "cast": [
+        "刘乙萱",
+        "申霓",
+        "周文嘉",
+        "赵雨卉"
+      ],
+      "castWithRoles": [
+        {
+          "key": "Lizzie|||刘乙萱",
+          "roleName": "Lizzie",
+          "castName": "刘乙萱"
+        },
+        {
+          "key": "Emma|||申霓",
+          "roleName": "Emma",
+          "castName": "申霓"
+        },
+        {
+          "key": "Bridget|||周文嘉",
+          "roleName": "Bridget",
+          "castName": "周文嘉"
+        },
+        {
+          "key": "Alice|||赵雨卉",
+          "roleName": "Alice",
+          "castName": "赵雨卉"
+        }
+      ],
+      "seat": "A2-19",
+      "notes": "萱斧头位互动挑下巴啊啊啊啊啊",
+      "images": [],
+      "createdAt": "2025-12-06T07:16:01.713Z"
     }
   ],
   "showsInfo": [
@@ -1545,5 +1584,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:14:42.785Z"
+  "lastUpdate": "2025-12-06T07:16:02.447Z"
 }
