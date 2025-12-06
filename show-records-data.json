@@ -1134,6 +1134,33 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:17:46.266Z"
+    },
+    {
+      "id": 1765005531703,
+      "showName": "疯子与赞美诗",
+      "showType": "音乐剧",
+      "date": "2025-04-26",
+      "time": "14:30",
+      "cast": [
+        "乌丽雅苏",
+        "葛洧吟"
+      ],
+      "castWithRoles": [
+        {
+          "key": "疯子|||乌丽雅苏",
+          "roleName": "疯子",
+          "castName": "乌丽雅苏"
+        },
+        {
+          "key": "李默|||葛洧吟",
+          "roleName": "李默",
+          "castName": "葛洧吟"
+        }
+      ],
+      "seat": "B1-2",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-06T07:18:51.703Z"
     }
   ],
   "showsInfo": [
@@ -1668,5 +1695,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-06T07:17:46.714Z"
+  "lastUpdate": "2025-12-06T07:18:52.236Z"
 }
