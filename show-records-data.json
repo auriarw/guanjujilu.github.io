@@ -1161,20 +1161,6 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:18:51.703Z"
-    },
-    {
-      "id": 1765222803220,
-      "showName": "三妇志异",
-      "showType": "话剧",
-      "genre": "话剧",
-      "date": "2026-01-10",
-      "time": "14:00",
-      "cast": [],
-      "castWithRoles": [],
-      "seat": "",
-      "notes": "《慧眼》《木兰》《飞光》",
-      "images": [],
-      "createdAt": "2025-12-08T19:40:03.220Z"
     }
   ],
   "showsInfo": [
@@ -1752,5 +1738,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-08T19:41:15.916Z"
+  "lastUpdate": "2025-12-08T19:41:31.688Z"
 }
