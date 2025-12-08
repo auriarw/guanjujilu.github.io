@@ -1356,6 +1356,34 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-08T20:09:36.211Z"
+    },
+    {
+      "id": 1765224737821,
+      "showName": "杂物间里的麦克白",
+      "showType": "话剧",
+      "genre": "话剧",
+      "date": "2026-01-11",
+      "time": "14:00",
+      "cast": [
+        "丁辰西",
+        "谢承颖"
+      ],
+      "castWithRoles": [
+        {
+          "key": "她|||丁辰西",
+          "roleName": "她",
+          "castName": "丁辰西"
+        },
+        {
+          "key": "王淑芸|||谢承颖",
+          "roleName": "王淑芸",
+          "castName": "谢承颖"
+        }
+      ],
+      "seat": "2-1",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-08T20:12:17.821Z"
     }
   ],
   "showsInfo": [
@@ -2014,5 +2042,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-08T20:11:28.244Z"
+  "lastUpdate": "2025-12-08T20:12:18.234Z"
 }
