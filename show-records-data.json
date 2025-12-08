@@ -1339,6 +1339,23 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-08T19:58:21.827Z"
+    },
+    {
+      "id": 1765224576211,
+      "showName": "我的遗愿清单",
+      "showType": "音乐剧",
+      "genre": "音乐剧",
+      "date": "2026-01-09",
+      "time": "19:30",
+      "cast": [
+        "张智涵",
+        "张博俊"
+      ],
+      "castWithRoles": [],
+      "seat": "2-5-4",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-08T20:09:36.211Z"
     }
   ],
   "showsInfo": [
@@ -1973,5 +1990,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-08T20:07:24.571Z"
+  "lastUpdate": "2025-12-08T20:09:36.695Z"
 }
