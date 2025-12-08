@@ -1271,6 +1271,40 @@
       "notes": "“新世界的边境”\n《蛇精之家》《女人国》《踵火》",
       "images": [],
       "createdAt": "2025-12-08T19:48:47.366Z"
+    },
+    {
+      "id": 1765223865805,
+      "showName": "蝶变",
+      "showType": "音乐剧",
+      "genre": "音乐剧",
+      "date": "2025-07-27",
+      "time": "19:30",
+      "cast": [
+        "郭耀嵘",
+        "党韫葳",
+        "黄周"
+      ],
+      "castWithRoles": [
+        {
+          "key": "曼笙|||郭耀嵘",
+          "roleName": "曼笙",
+          "castName": "郭耀嵘"
+        },
+        {
+          "key": "沈文君|||党韫葳",
+          "roleName": "沈文君",
+          "castName": "党韫葳"
+        },
+        {
+          "key": "齐志平|||黄周",
+          "roleName": "齐志平",
+          "castName": "黄周"
+        }
+      ],
+      "seat": "上话D6 6-3",
+      "notes": "",
+      "images": [],
+      "createdAt": "2025-12-08T19:57:45.805Z"
     }
   ],
   "showsInfo": [
@@ -1894,5 +1928,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-08T19:54:25.826Z"
+  "lastUpdate": "2025-12-08T19:57:46.513Z"
 }
