@@ -1161,6 +1161,58 @@
       "notes": "",
       "images": [],
       "createdAt": "2025-12-06T07:18:51.703Z"
+    },
+    {
+      "id": 1765223080922,
+      "showName": "三妇志异",
+      "showType": "话剧",
+      "genre": "话剧",
+      "date": "2026-01-10",
+      "time": "14:00",
+      "cast": [
+        "相安琪",
+        "任真慧",
+        "孙新雨",
+        "任怡洁",
+        "周梦男",
+        "李晓辉"
+      ],
+      "castWithRoles": [
+        {
+          "key": "|||相安琪",
+          "roleName": "",
+          "castName": "相安琪"
+        },
+        {
+          "key": "|||任真慧",
+          "roleName": "",
+          "castName": "任真慧"
+        },
+        {
+          "key": "|||孙新雨",
+          "roleName": "",
+          "castName": "孙新雨"
+        },
+        {
+          "key": "|||任怡洁",
+          "roleName": "",
+          "castName": "任怡洁"
+        },
+        {
+          "key": "|||周梦男",
+          "roleName": "",
+          "castName": "周梦男"
+        },
+        {
+          "key": "|||李晓辉",
+          "roleName": "",
+          "castName": "李晓辉"
+        }
+      ],
+      "seat": "",
+      "notes": "“历史的夹层”\n《慧眼》《木兰》《飞光》",
+      "images": [],
+      "createdAt": "2025-12-08T19:44:40.922Z"
     }
   ],
   "showsInfo": [
@@ -1738,5 +1790,5 @@
   "manualWatchCounts": {
     "连璧|||李玉屏|||张沁丹": 0
   },
-  "lastUpdate": "2025-12-08T19:41:31.688Z"
+  "lastUpdate": "2025-12-08T19:44:41.906Z"
 }
